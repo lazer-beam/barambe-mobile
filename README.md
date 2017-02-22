@@ -3,6 +3,20 @@
 
 * Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
 
+## Useful Docs
+
+* [Yarn Cheatsheet](https://github.com/infinitered/ignite)
+
+* [React Native: Getting Start](https://facebook.github.io/react-native/docs/getting-started.html)
+
+* [React Native: Android Setup](https://facebook.github.io/react-native/releases/0.23/docs/android-setup.html)
+
+* [Genymotion Personal Edition](https://www.genymotion.com/fun-zone/)
+
+**Step 2:** cd to the cloned repo:
+
+**Step 3:** Install the Application with `npm install`
+
 ## :arrow_up: How to Setup
 
 **Step 1:** git clone this repo:
