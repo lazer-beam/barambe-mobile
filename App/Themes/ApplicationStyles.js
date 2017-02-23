@@ -44,6 +44,11 @@ const ApplicationStyles = {
       padding: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
       marginHorizontal: Metrics.smallMargin
+    },
+    blackContainer: {
+      flex: 1,
+      marginTop: Metrics.navBarHeight,
+      backgroundColor: Colors.barambeBlack
     }
   },
   darkLabelContainer: {
