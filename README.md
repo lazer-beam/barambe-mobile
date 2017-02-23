@@ -3,19 +3,28 @@
 
 * Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
 
-## Useful Docs
+## Setting Up Docs
 
 * [Yarn Cheatsheet](https://github.com/infinitered/ignite)
 
-* [React Native: Getting Start](https://facebook.github.io/react-native/docs/getting-started.html)
+* [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html)
 
 * [React Native: Android Setup](https://facebook.github.io/react-native/releases/0.23/docs/android-setup.html)
 
 * [Genymotion Personal Edition](https://www.genymotion.com/fun-zone/)
 
-**Step 2:** cd to the cloned repo:
+## React-Native Request Notes
 
-**Step 3:** Install the Application with `npm install`
+* [Connect localhost with Android Emulator](https://github.com/facebook/react-native/issues/10404#issuecomment-280553649)
+
+* [react-native-fetch-blob](https://www.npmjs.com/package/react-native-fetch-blob) 
+
+* [Manually Link Package in react-native](https://github.com/wkh237/react-native-fetch-blob/wiki/Manually-Link-Package)
+
+* [Using Native JavaScript Fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+* [React-Native Using Fetch](https://facebook.github.io/react-native/docs/network.html) 
+
 
 ## :arrow_up: How to Setup
 
