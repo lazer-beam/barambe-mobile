@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { ScrollView, View, Image } from 'react-native'
-// import RNFetchBlob from 'react-native-fetch-blob'
+import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 import { Metrics, Images } from '../Themes'
@@ -10,12 +10,12 @@ import FullButton from '../Components/FullButton'
 
 // For API
 import API from '../Services/Api'
-// import MenuConfig from '../Config/MenuConfig'
+import MenuConfig from '../Config/MenuConfig'
 
 // Styles
 import styles from './Styles/BarMenuScreenStyle'
 
-// const DOMAIN = MenuConfig.domain
+const DOMAIN = MenuConfig.domain
 
 export default class APITestingScreen extends React.Component {
   api: Object
@@ -27,31 +27,51 @@ export default class APITestingScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
-      visibleHeight: Metrics.screenHeight
+      visibleHeight: Metrics.screenHeight,
+      beers: [],
+      shots: [],
+      cocktails: [],
+      addIns: []
     }
 
     this.api = API.create()
+    this.renderBeerMenu = this.renderBeerMenu.bind(this)
+    this.renderShotsMenu = this.renderShotsMenu.bind(this)
+    this.renderCocktailsMenu = this.renderCocktailsMenu.bind(this)
   }
 
   componentDidMount () {
-    // RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
-    //   .then(res => {
-    //     console.log('res.json()', res.json())
-    //   }).catch(err => {
-    //     console.log('err', err)
-    //   })
+    RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
+      .then(res => {
+        this.generateDrinksArrs(res.json())
+      }).catch(err => {
+        console.log('err', err)
+      })
+  }
+
+  generateDrinksArrs (json) {
+    this.setState({
+      beers: json.beerArr,
+      shots: json.liquorArr,
+      cocktails: json.cocktailArr,
+      addIns: json.addInArr
+    })
   }
 
   renderBeerMenu () {
-    NavigationActions.beersMenu()
+    NavigationActions.beersMenu({ beers: this.state.beers })
   }
 
   renderShotsMenu () {
-    NavigationActions.shotsMenu()
+    NavigationActions.shotsMenu({ shots: this.state.shots })
   }
 
   renderCocktailsMenu () {
-    NavigationActions.cocktailsMenu()
+    NavigationActions.cocktailsMenu({
+      cocktails: this.state.cocktails,
+      liquors: this.state.shots,
+      addIns: this.state.addIns
+    })
   }
 
   render () {
@@ -59,9 +79,9 @@ export default class APITestingScreen extends React.Component {
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
           <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
-          <FullButton text={'Beer Menu'} onPress={NavigationActions.beersMenu} styles={{marginBottom: 0, backgroundColor: '#1A2930'}} key={1} />
-          <FullButton text={'Shots Menu'} onPress={this.renderShotsMenu.bind(this, this.renderShotsMenu)} styles={{marginBottom: 0, marginTop: 0, backgroundColor: '#1A2930'}} key={2} />
-          <FullButton text={'Cocktails Menu'} onPress={this.renderCocktailsMenu.bind(this, this.renderCocktailsMenu)} styles={{marginTop: 0, backgroundColor: '#1A2930'}} key={3} />
+          <FullButton text={'Beer Menu'} onPress={() => { this.renderBeerMenu() }} styles={{marginBottom: 0, backgroundColor: '#1A2930'}} key={1} />
+          <FullButton text={'Shots Menu'} onPress={() => { this.renderShotsMenu() }} styles={{marginBottom: 0, marginTop: 0, backgroundColor: '#1A2930'}} key={2} />
+          <FullButton text={'Cocktails Menu'} onPress={() => { this.renderCocktailsMenu() }} styles={{marginTop: 0, backgroundColor: '#1A2930'}} key={3} />
         </ScrollView>
       </View>
     )
