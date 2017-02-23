@@ -46,6 +46,10 @@ export default class PresentationScreen extends React.Component {
             Device Info Screen
           </RoundedButton>
 
+          <RoundedButton onPress={NavigationActions.barMenu}>
+            Bar Menu
+          </RoundedButton>
+
           <View style={styles.centered}>
             <Text style={styles.subtitle}>Made with ❤️ by Infinite Red</Text>
           </View>
