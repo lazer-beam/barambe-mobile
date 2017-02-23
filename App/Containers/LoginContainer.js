@@ -23,10 +23,10 @@ import { Sae } from 'react-native-textinput-effects'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import Reactotron from 'reactotron-react-native'
 
-
+import Auth0Lock from 'react-native-lock'
 
 class LoginContainer extends React.Component {
-  
+
   constructor(props) {
     super(props)
 
@@ -37,6 +37,8 @@ class LoginContainer extends React.Component {
       download: 'download',
       downloadProgress: 0,
     }
+    this.lock = new Auth0Lock({clientId: 'e7Cg7lClPf4Tky0Z27iz83E732KPVnXX', domain: 'eliotjunior.auth0.com'})
+    this.apple = 'apple'
   }
 
   handleTextChange(txt, whichState) {
@@ -45,6 +47,18 @@ class LoginContainer extends React.Component {
     this.setState(obj)
   }
 
+  _onLogin() {
+    this.lock.show({closable: true}, (err, profile, token) => {
+      if (err) {
+        Reactotron.log(err)
+        return
+      }
+      // Authentication worked!
+      Reactotron.log('Logged in with Auth0!')
+      Reactotron.log(profile)
+    })
+  }
+  
   render() {
     const inputProps = {
       labelStyle: styles.label,
@@ -53,6 +67,7 @@ class LoginContainer extends React.Component {
       iconName: 'pencil',
       iconColor: Colors.app1,
     }
+
     return (
       <ScrollView 
         contentContainerStyle={{justifyContent: 'center'}} 
@@ -64,7 +79,7 @@ class LoginContainer extends React.Component {
           <Sae {...inputProps} label={'Password'} secureTextEntry={true} value={this.state.password} onChangeText={(txt) => this.handleTextChange(txt, 'password')} />
         </View>
         <Button
-          onPress={() => {}}
+          onPress={() => this._onLogin()}
           title="Submit"
           color={ Colors.app1}
           accessibilityLabel="Submit Login"
