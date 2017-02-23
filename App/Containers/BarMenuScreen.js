@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { ScrollView, View, Image } from 'react-native'
-import RNFetchBlob from 'react-native-fetch-blob'
+// import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 import { Metrics, Images } from '../Themes'
@@ -10,12 +10,12 @@ import FullButton from '../Components/FullButton'
 
 // For API
 import API from '../Services/Api'
-import MenuConfig from '../Config/MenuConfig'
+// import MenuConfig from '../Config/MenuConfig'
 
 // Styles
 import styles from './Styles/BarMenuScreenStyle'
 
-const DOMAIN = MenuConfig.domain
+// const DOMAIN = MenuConfig.domain
 
 export default class APITestingScreen extends React.Component {
   api: Object
@@ -34,27 +34,24 @@ export default class APITestingScreen extends React.Component {
   }
 
   componentDidMount () {
-    RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
-      .then(res => {
-        console.log('res.json()', res.json())
-      }).catch(err => {
-        console.log('err', err)
-      })
+    // RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
+    //   .then(res => {
+    //     console.log('res.json()', res.json())
+    //   }).catch(err => {
+    //     console.log('err', err)
+    //   })
   }
 
   renderBeerMenu () {
     NavigationActions.beersMenu()
-    console.log('renderBeerMenu')
   }
 
   renderShotsMenu () {
     NavigationActions.shotsMenu()
-    console.log('renderShotsMenu')
   }
 
   renderCocktailsMenu () {
     NavigationActions.cocktailsMenu()
-    console.log('renderCocktailsMenu')
   }
 
   render () {

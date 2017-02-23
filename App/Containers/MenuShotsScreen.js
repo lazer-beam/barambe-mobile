@@ -40,16 +40,8 @@ export default class APITestingScreen extends React.Component {
       })
   }
 
-  renderBeerMenu () {
-    console.log('renderBeerMenu')
-  }
+  addShotToTab () {
 
-  renderShotsMenu () {
-    console.log('renderShotsMenu')
-  }
-
-  renderCocktailsMenu () {
-    console.log('renderCocktailsMenu')
   }
 
   render () {
@@ -57,9 +49,9 @@ export default class APITestingScreen extends React.Component {
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
           <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
-          <FullButton text={'Shot 1'} onPress={this.renderBeerMenu.bind(this, this.renderBeerMenu)} styles={{marginBottom: 0, backgroundColor: '#1A2930'}} key={1} />
-          <FullButton text={'Shot 2'} onPress={this.renderShotsMenu.bind(this, this.renderShotsMenu)} styles={{marginBottom: 0, marginTop: 0, backgroundColor: '#1A2930'}} key={2} />
-          <FullButton text={'Shot 3'} onPress={this.renderCocktailsMenu.bind(this, this.renderCocktailsMenu)} styles={{marginTop: 0, backgroundColor: '#1A2930'}} key={3} />
+          <FullButton text={'Shot 1'} onPress={this.addShotToTab.bind(this)} styles={{marginBottom: 0, backgroundColor: '#1A2930'}} key={1} />
+          <FullButton text={'Shot 2'} onPress={this.addShotToTab.bind(this)} styles={{marginBottom: 0, marginTop: 0, backgroundColor: '#1A2930'}} key={2} />
+          <FullButton text={'Shot 3'} onPress={this.addShotToTab.bind(this)} styles={{marginTop: 0, backgroundColor: '#1A2930'}} key={3} />
         </ScrollView>
       </View>
     )
