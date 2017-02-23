@@ -1,8 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-packagingOptions {
-    exclude 'META-INF/LICENSE'
-    exclude 'META-INF/NOTICE'
-}
+
 buildscript {
     repositories {
         jcenter()
@@ -27,3 +24,4 @@ allprojects {
         }
     }
 }
+
