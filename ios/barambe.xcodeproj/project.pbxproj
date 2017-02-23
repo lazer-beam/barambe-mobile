@@ -37,6 +37,9 @@
 		6F3BB482EC3D4D438ADF5333 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0071FDCF892449FA62F180F /* Octicons.ttf */; };
 		4C0FC1F6241243DE8F926DD7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4FAE428C92148D79BDBCA69 /* SimpleLineIcons.ttf */; };
 		321E42753FA34EDDAF5F5EF8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3D8C2BF547D4A2483DD9DB9 /* Zocial.ttf */; };
+		46CBCE20F995473FB6B845C8 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EEF6259A1E4657B559B496 /* libRNSpinkit.a */; };
+		D9EF0C7F1F4A4FFD940E8825 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A72B597E4E44F879D2CFBCF /* libBVLinearGradient.a */; };
+		DCCEDD2FB8804BC685DE07DC /* libA0RNLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 962E319CA3AA4BBCBD3E6E9D /* libA0RNLock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +178,12 @@
 		B0071FDCF892449FA62F180F /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C4FAE428C92148D79BDBCA69 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D3D8C2BF547D4A2483DD9DB9 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		123044151F15473DB9A1E035 /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; name = "RNSpinkit.xcodeproj"; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		91EEF6259A1E4657B559B496 /* libRNSpinkit.a */ = {isa = PBXFileReference; name = "libRNSpinkit.a"; path = "libRNSpinkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		54F4488924CC4D4AB800FA10 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		6A72B597E4E44F879D2CFBCF /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		CC42867046AC4160879FAECC /* A0RNLock.xcodeproj */ = {isa = PBXFileReference; name = "A0RNLock.xcodeproj"; path = "../node_modules/react-native-lock/ios/A0RNLock.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		962E319CA3AA4BBCBD3E6E9D /* libA0RNLock.a */ = {isa = PBXFileReference; name = "libA0RNLock.a"; path = "libA0RNLock.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +215,9 @@
 				B35F63B0883448CD85D2502D /* libRNI18n.a in Frameworks */,
 				7A28D964B6AD46E4AE50CBA6 /* libAirMaps.a in Frameworks */,
 				A0E12A9DD92C495AA0532A0F /* libRNVectorIcons.a in Frameworks */,
+				46CBCE20F995473FB6B845C8 /* libRNSpinkit.a in Frameworks */,
+				D9EF0C7F1F4A4FFD940E8825 /* libBVLinearGradient.a in Frameworks */,
+				DCCEDD2FB8804BC685DE07DC /* libA0RNLock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +355,9 @@
 				CFD904951689478D85922C60 /* RNI18n.xcodeproj */,
 				BC81437158D042859DB02DB1 /* AirMaps.xcodeproj */,
 				E1946341D29E4337B96974BB /* RNVectorIcons.xcodeproj */,
+				123044151F15473DB9A1E035 /* RNSpinkit.xcodeproj */,
+				54F4488924CC4D4AB800FA10 /* BVLinearGradient.xcodeproj */,
+				CC42867046AC4160879FAECC /* A0RNLock.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -706,6 +721,9 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -722,6 +740,9 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/barambe.app/barambe";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -809,6 +830,9 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-lock/ios/A0RNLock/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -854,6 +878,9 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-lock/ios/A0RNLock/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
