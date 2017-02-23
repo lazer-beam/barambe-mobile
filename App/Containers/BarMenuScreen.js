@@ -3,6 +3,7 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, Image } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
+import DeviceInfo from 'react-native-device-info'
 import { Metrics, Images } from '../Themes'
 import FullButton from '../Components/FullButton'
 
@@ -18,6 +19,8 @@ const endpoints = [
   { label: 'Get City (Boise)', endpoint: 'getCity', args: ['Boise'] },
   { label: 'Get City (Toronto)', endpoint: 'getCity', args: ['Toronto'] }
 ]
+
+const DOMAIN = DeviceInfo.getManufacturer() === 'Genymotion' ? 'http://10.0.3.2:1337' : 'http://10.0.2.2:1337/'
 
 export default class APITestingScreen extends React.Component {
   api: Object
@@ -52,7 +55,7 @@ export default class APITestingScreen extends React.Component {
   }
 
   menuEndpoint () {
-    RNFetchBlob.fetch('GET', 'http://10.0.3.2:1337/drinks/getall/')
+    RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
       .then(res => {
         console.log('res.json()', res.json())
       }).catch(err => {
