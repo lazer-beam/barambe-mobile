@@ -25,7 +25,8 @@ export default class APITestingScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
-      visibleHeight: Metrics.screenHeight
+      visibleHeight: Metrics.screenHeight,
+      beers: []
     }
 
     this.api = API.create()
@@ -34,22 +35,28 @@ export default class APITestingScreen extends React.Component {
   componentDidMount () {
     RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
       .then(res => {
-        console.log('res.json()', res.json())
+        this.createBeerArr(res.json().beerArr)
       }).catch(err => {
         console.log('err', err)
       })
   }
 
-  renderBeerMenu () {
-    console.log('renderBeerMenu')
+  createBeerArr (beers) {
+    this.setState({
+      beers: this.convertPrices(beers)
+    })
+    console.log('this.state', this.state)
   }
 
-  renderShotsMenu () {
-    console.log('renderShotsMenu')
+  convertPrices (beers) {
+    return beers.map(beer => ({
+      name: beer.name,
+      price: (beer.price / 100).toFixed(2)
+    }))
   }
 
-  renderCocktailsMenu () {
-    console.log('renderCocktailsMenu')
+  addBeerToTab () {
+
   }
 
   render () {
@@ -57,9 +64,7 @@ export default class APITestingScreen extends React.Component {
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
           <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
-          <FullButton text={'Beer 1'} onPress={this.renderBeerMenu.bind(this, this.renderBeerMenu)} styles={{marginBottom: 0, backgroundColor: '#1A2930'}} key={1} />
-          <FullButton text={'Beer 2'} onPress={this.renderShotsMenu.bind(this, this.renderShotsMenu)} styles={{marginBottom: 0, marginTop: 0, backgroundColor: '#1A2930'}} key={2} />
-          <FullButton text={'Beer 3'} onPress={this.renderCocktailsMenu.bind(this, this.renderCocktailsMenu)} styles={{marginTop: 0, backgroundColor: '#1A2930'}} key={3} />
+          {this.state.beers.map(beer => <FullButton text={beer.name} key={beer.name} styles={{marginTop: 0, marginBottom: 0, backgroundColor: '#1A2930'}} />)}
         </ScrollView>
       </View>
     )
