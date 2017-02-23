@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Keyboard,
+  Button,
   LayoutAnimation
 } from 'react-native'
 
@@ -18,8 +19,11 @@ import {Images, Metrics, Colors} from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
-import { Hoshi, Sae } from 'react-native-textinput-effects'
+import { Sae } from 'react-native-textinput-effects'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import Reactotron from 'reactotron-react-native'
+
+
 
 class LoginContainer extends React.Component {
   
@@ -27,13 +31,28 @@ class LoginContainer extends React.Component {
     super(props)
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
       visibleHeight: Metrics.screenHeight,
+      download: 'download',
+      downloadProgress: 0,
     }
   }
 
+  handleTextChange(txt, whichState) {
+    let obj = {}
+    obj[whichState] = txt
+    this.setState(obj)
+  }
+
   render() {
+    const inputProps = {
+      labelStyle: styles.label,
+      inputStyle: styles.input,
+      iconClass: FontAwesomeIcon,
+      iconName: 'pencil',
+      iconColor: Colors.app1,
+    }
     return (
       <ScrollView 
         contentContainerStyle={{justifyContent: 'center'}} 
@@ -41,23 +60,15 @@ class LoginContainer extends React.Component {
         keyboardShouldPersistTaps>
         <View style={[styles.card2, { backgroundColor: Colors.backgroundLight }]}>
           <Text style={styles.title}>Login</Text>
-          <Sae
-            label={'Email Address'}
-            labelStyle={styles.label}
-            inputStyle={styles.input}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={Colors.app1}
-          />
-          <Sae
-            label={'Password'}
-            inputStyle={styles.input}
-            labelStyle={styles.label}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={Colors.app1}
-          />
+          <Sae {...inputProps} label={'Email Address'} value={this.state.email} onChangeText={(txt) => this.handleTextChange(txt, 'email')} />
+          <Sae {...inputProps} label={'Password'} secureTextEntry={true} value={this.state.password} onChangeText={(txt) => this.handleTextChange(txt, 'password')} />
         </View>
+        <Button
+          onPress={() => {}}
+          title="Submit"
+          color={ Colors.app1}
+          accessibilityLabel="Submit Login"
+        />
       </ScrollView>
     )
   }

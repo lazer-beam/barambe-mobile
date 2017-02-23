@@ -1,5 +1,9 @@
 node_modules
 .env
 
-android
+android/.gradle/
+android/app/build/
+android/build/
 ios
+
+yarn-error.log
