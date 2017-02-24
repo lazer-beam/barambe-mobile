@@ -24,11 +24,11 @@ type FullButtonProps = {
 export default class FullButton extends React.Component {
   props: FullButtonProps
   render () {
-    console.log('this.props', this.props)
     return (
       <TouchableOpacity style={[styles.button, this.props.styles]} onPress={this.props.onPress}>
         <Text style={styles.buttonText}>{this.props.text && this.props.text.toUpperCase()}
-          {this.props.price ? this.props.price : <Icon name='angle-right' size={Metrics.icons.small} color={Colors.snow} style={styles.chevron_right} />}
+          {this.props.price ? <Text style={styles.priceText}> {this.props.price} </Text>
+          : <Icon name='angle-right' size={Metrics.icons.small} color={Colors.snow} style={styles.chevronRight} />}
         </Text>
       </TouchableOpacity>
     )

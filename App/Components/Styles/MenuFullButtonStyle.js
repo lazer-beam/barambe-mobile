@@ -20,8 +20,12 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.bold,
     width: Metrics.screenWidth
   },
-  chevron_right: {
+  chevronRight: {
     backgroundColor: Colors.transparent,
     color: Colors.barambeGrey
+  },
+  priceText: {
+    fontSize: Fonts.size.small,
+    color: Colors.barambeYellow
   }
 })
