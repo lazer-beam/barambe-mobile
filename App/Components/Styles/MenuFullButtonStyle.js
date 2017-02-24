@@ -10,22 +10,36 @@ export default StyleSheet.create({
     borderBottomColor: Colors.barambeGrey,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    backgroundColor: Colors.ember
+    backgroundColor: Colors.ember,
+    flex: 1,
+    // flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   buttonText: {
-    margin: 8,
+    marginVertical: 8,
     textAlign: 'left',
     color: Colors.barambeGrey,
     fontSize: Fonts.size.medium,
     fontFamily: Fonts.type.bold,
-    width: Metrics.screenWidth
+    width: Metrics.screenWidth,
+    flex: 1,
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    paddingLeft: 15
   },
   chevronRight: {
     backgroundColor: Colors.transparent,
-    color: Colors.barambeGrey
+    color: Colors.barambeGrey,
+    flex: 1,
+    justifyContent: 'flex-end',
+    flexDirection: 'column'
   },
   priceText: {
     fontSize: Fonts.size.small,
-    color: Colors.barambeYellow
-  }
+    color: Colors.barambeYellow,
+    flex: 1,
+    justifyContent: 'flex-end',
+    flexDirection: 'column'
+  },
 })
