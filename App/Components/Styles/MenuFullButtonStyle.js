@@ -2,6 +2,7 @@
 
 import { StyleSheet } from 'react-native'
 import { Fonts, Colors, Metrics } from '../../Themes/'
+const WIDTH_OF_FULL_BUTTON = Number((Metrics.screenWidth * 0.7).toPrecision(1))
 
 export default StyleSheet.create({
   button: {
@@ -12,8 +13,8 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     backgroundColor: Colors.ember,
     flex: 1,
-    // flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center'
   },
   buttonText: {
@@ -22,18 +23,13 @@ export default StyleSheet.create({
     color: Colors.barambeGrey,
     fontSize: Fonts.size.medium,
     fontFamily: Fonts.type.bold,
-    width: Metrics.screenWidth,
-    flex: 1,
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
+    width: WIDTH_OF_FULL_BUTTON,
     paddingLeft: 15
   },
   chevronRight: {
     backgroundColor: Colors.transparent,
     color: Colors.barambeGrey,
-    flex: 1,
-    justifyContent: 'flex-end',
-    flexDirection: 'column'
+    alignItems: 'flex-end'
   },
   priceText: {
     fontSize: Fonts.size.small,
@@ -41,5 +37,5 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     flexDirection: 'column'
-  },
+  }
 })
