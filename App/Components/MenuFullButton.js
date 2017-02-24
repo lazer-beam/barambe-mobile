@@ -9,7 +9,7 @@ import { Colors, Metrics } from '../Themes'
 export default class FullButton extends React.Component {
   render () {
     return (
-      <TouchableOpacity style={[styles.button, this.props.styles]} onPress={this.props.onPress}>
+      <TouchableOpacity style={[styles.button, this.props.styles]} onPress={() => { this.props.onClickedItem(this.props.item) }}>
         <Text style={styles.buttonText}>
           {this.props.text && this.props.text.toUpperCase()}
         </Text>

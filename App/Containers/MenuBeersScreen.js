@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { ScrollView, View, Image } from 'react-native'
+import { ScrollView, View, Image, TouchableOpacity, Text, Button } from 'react-native'
 import { Metrics, Images } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
 
@@ -13,35 +13,78 @@ export default class APITestingScreen extends React.Component {
     super(props)
     this.state = {
       visibleHeight: Metrics.screenHeight,
-      beers: []
+      beers: [],
+      renderModal: false,
+      beerClicked: null
     }
+
+    this.beerClicked = this.beerClicked.bind(this)
   }
 
-  createBeerArr (beers) {
+  beerClicked (beer) {
     this.setState({
-      beers: this.convertPrices(beers)
+      renderModal: true,
+      beerClicked: beer
     })
-  }
-
-  convertPrices (beers) {
-    return beers.map(beer => ({
-      name: beer.name,
-      price: (beer.price / 100).toFixed(2)
-    }))
-  }
-
-  addBeerToTab () {
-
   }
 
   render () {
     return (
       <View style={styles.blackContainer}>
-        <ScrollView style={styles.container} ref='container'>
-          <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
-          {this.props.beers.map(beer => <MenuFullButton price={beer.price} text={beer.name} key={beer.name} styles={{marginTop: 0, marginBottom: 0, backgroundColor: '#1A2930'}} />)}
+        <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
+        <ScrollView style={styles.menuContainer} ref='container' scrollEnabled={false}>
+          {this.props.beers.map(beer => <MenuFullButton onClickedItem={this.beerClicked} item={beer} price={beer.price} text={beer.name} key={beer.name} styles={{marginTop: 0, marginBottom: 0, backgroundColor: '#1A2930'}} />)}
         </ScrollView>
+        <Button title='Close Tab' onPress={() => { console.log('closing tab') }}>Close Tab</Button>
+        {this.state.renderModal ? <OrderModal order={this.state.beerClicked} /> : <OrderModal />}
       </View>
     )
+  }
+
+}
+
+class OrderModal extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      order: null,
+      displayModal: true
+    }
+    this.renderModal = this.renderModal.bind(this)
+    this.removeModal = this.removeModal.bind(this)
+  }
+
+  removeModal () {
+    this.setState({
+      displayModal: false
+    })
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (!prevState.displayModal) {
+      this.setState({ displayModal: true })
+    }
+  }
+
+  renderModal () {
+    return (<ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
+      <TouchableOpacity
+        onPress={this.removeModal}
+        style={{backgroundColor: 'white', padding: 20}}
+      >
+        <Text>{JSON.stringify(this.props.order)}</Text>
+        <Text allowFontScaling={false} style={{fontFamily: 'CourierNewPS-BoldMT', fontSize: 10}}>
+          {this.state.message}
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>)
+  }
+
+  render () {
+    if (this.props.order && this.state.displayModal) {
+      return this.renderModal(this.props.order)
+    }
+
+    return <Text />
   }
 }
