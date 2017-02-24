@@ -26,11 +26,18 @@ export default class FullButton extends React.Component {
   render () {
     return (
       <TouchableOpacity style={[styles.button, this.props.styles]} onPress={this.props.onPress}>
-        <Text style={styles.buttonText}>{this.props.text && this.props.text.toUpperCase()}
+          <Text style={styles.buttonText}>
+            {this.props.text && this.props.text.toUpperCase()}
+          </Text>
           {this.props.price ? <Text style={styles.priceText}> {this.props.price} </Text>
-          : <Icon name='angle-right' size={Metrics.icons.small} color={Colors.snow} style={styles.chevronRight} />}
-        </Text>
+            : <Text style={styles.chevronRight}> <Icon name='angle-right' size={Metrics.icons.small} color={Colors.barambeGrey} /> </Text>}
       </TouchableOpacity>
     )
   }
 }
+
+
+{/*<Text style={styles.chevronRight}> 
+            {this.props.price ? <Text style={styles.priceText}> {this.props.price} </Text>
+            : <Icon name='angle-right' size={Metrics.icons.small} color={Colors.snow} />} 
+          </Text>*/}
