@@ -47,7 +47,7 @@ const ApplicationStyles = {
     },
     blackContainer: {
       flex: 1,
-      marginTop: Metrics.navBarHeight,
+      marginTop: Metrics.BarMenuTopMargin,
       backgroundColor: Colors.barambeBlack
     }
   },
