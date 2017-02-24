@@ -28,6 +28,7 @@ export default class APITestingScreen extends React.Component {
     this.renderBeerMenu = this.renderBeerMenu.bind(this)
     this.renderShotsMenu = this.renderShotsMenu.bind(this)
     this.renderCocktailsMenu = this.renderCocktailsMenu.bind(this)
+    this.convertPrices = this.convertPrices.bind(this)
   }
 
   componentDidMount () {
@@ -41,10 +42,17 @@ export default class APITestingScreen extends React.Component {
 
   generateDrinksArrs (json) {
     this.setState({
-      beers: json.beerArr,
-      shots: json.liquorArr,
-      cocktails: json.cocktailArr,
-      addIns: json.addInArr
+      beers: this.convertPrices(json.beerArr),
+      shots: this.convertPrices(json.liquorArr),
+      cocktails: this.convertPrices(json.cocktailArr),
+      addIns: this.convertPrices(json.addInArr)
+    })
+  }
+
+  convertPrices (items) {
+    return items.map(item => {
+      item.price = item.price ? (item.price / 100).toFixed(2) : null
+      return item
     })
   }
 
