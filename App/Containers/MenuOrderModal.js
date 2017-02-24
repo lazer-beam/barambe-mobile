@@ -3,7 +3,7 @@ import { TouchableOpacity, ScrollView, Text, Button } from 'react-native'
 import MenuConfig from '../Config/MenuConfig'
 
 const DOMAIN = MenuConfig.domain
-const TEMP_ID = '7'
+const TEMP_TAB_ID = '2'
 
 export default class OrderModal extends React.Component {
   constructor (props) {
@@ -37,7 +37,7 @@ export default class OrderModal extends React.Component {
       method: 'POST',
       body: JSON.stringify({
         drinkName: order.name,
-        tabId: TEMP_ID
+        tabId: TEMP_TAB_ID
       })
     }).then(res => {
       console.log('res', res)
@@ -56,7 +56,7 @@ export default class OrderModal extends React.Component {
         <Text allowFontScaling={false} style={{fontFamily: 'CourierNewPS-BoldMT', fontSize: 10}}>
           {this.state.message}
         </Text>
-        <Button title='Add to Order' onPress={() => { this.sendOrderToServer(this.props.order) }} />
+        <Button title='Add to Tab' onPress={() => { this.sendOrderToServer(this.props.order) }} />
       </TouchableOpacity>
     </ScrollView>)
   }
