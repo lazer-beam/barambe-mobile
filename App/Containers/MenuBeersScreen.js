@@ -43,7 +43,7 @@ export default class MenuBeers extends React.Component {
           />)}
         </ScrollView>
         {this.state.renderModal ? <OrderModal order={this.state.beerClicked} /> : <OrderModal />}
-        <Button title='Close Tab' onPress={() => { console.log('closing tab') }}>Close Tab</Button>
+        <Button title='Close Tab' onPress={() => { console.log('closing tab') }} />
       </View>
     )
   }

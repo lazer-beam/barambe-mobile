@@ -1,5 +1,9 @@
 import React from 'react'
-import { TouchableOpacity, ScrollView, Text } from 'react-native'
+import { TouchableOpacity, ScrollView, Text, Button } from 'react-native'
+import MenuConfig from '../Config/MenuConfig'
+
+const DOMAIN = MenuConfig.domain
+const TEMP_ID = '7'
 
 export default class OrderModal extends React.Component {
   constructor (props) {
@@ -24,8 +28,26 @@ export default class OrderModal extends React.Component {
     }
   }
 
+  sendOrderToServer (order) {
+    fetch(`${DOMAIN}/orders/addorder/`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        drinkName: order.name,
+        tabId: TEMP_ID
+      })
+    }).then(res => {
+      console.log('res', res)
+    }).catch(err => {
+      console.log('err', err)
+    })
+  }
+
   renderModal () {
-    return (<ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
+    return (<ScrollView style={{ top: 250, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
       <TouchableOpacity
         onPress={this.removeModal}
         style={{backgroundColor: 'white', padding: 20}}
@@ -34,6 +56,7 @@ export default class OrderModal extends React.Component {
         <Text allowFontScaling={false} style={{fontFamily: 'CourierNewPS-BoldMT', fontSize: 10}}>
           {this.state.message}
         </Text>
+        <Button title='Add to Order' onPress={() => { this.sendOrderToServer(this.props.order) }} />
       </TouchableOpacity>
     </ScrollView>)
   }

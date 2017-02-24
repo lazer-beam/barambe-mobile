@@ -21,7 +21,6 @@ export default class MenuShots extends React.Component {
   }
 
   displayShotModal (shot) {
-    console.log('displayShotModal', shot)
     this.setState({
       renderModal: true,
       shotClicked: shot
