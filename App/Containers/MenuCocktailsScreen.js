@@ -32,7 +32,14 @@ export default class MenuCocktail extends React.Component {
       <View style={styles.blackContainer}>
         <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
         <ScrollView style={styles.container} ref='container'>
-          {this.props.cocktails.map(cocktail => <MenuFullButton onClickedItem={this.displayCocktailModal} item={cocktail} price={cocktail.price} text={cocktail.name} key={cocktail.name} styles={{marginTop: 0, marginBottom: 0, backgroundColor: '#1A2930'}} />)}
+          {this.props.cocktails.map(cocktail => <MenuFullButton
+            onClickedItem={this.displayCocktailModal}
+            item={cocktail}
+            price={cocktail.price}
+            text={cocktail.name}
+            key={cocktail.name}
+            styles={{marginTop: 0, marginBottom: 0, backgroundColor: '#1A2930'}}
+          />)}
         </ScrollView>
         {this.state.renderModal ? <OrderModal order={this.state.cocktailClicked} /> : <OrderModal />}
         <Button title='Close Tab' onPress={() => { console.log('closing tab') }} />
