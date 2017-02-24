@@ -1,0 +1,36 @@
+// @flow
+
+import React from 'react'
+import { TouchableOpacity, Text } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import styles from './Styles/MenuFullButtonStyle'
+import ExamplesRegistry from '../Services/ExamplesRegistry'
+import { Colors, Metrics } from '../Themes'
+
+// Example
+ExamplesRegistry.add('Full Button', () =>
+  <FullButton
+    text='Hey there'
+    onPress={() => window.alert('Full Button Pressed!')}
+  />
+)
+
+type FullButtonProps = {
+  text: string,
+  onPress: () => void,
+  styles?: Object
+}
+
+export default class FullButton extends React.Component {
+  props: FullButtonProps
+  render () {
+    console.log('this.props', this.props)
+    return (
+      <TouchableOpacity style={[styles.button, this.props.styles]} onPress={this.props.onPress}>
+        <Text style={styles.buttonText}>{this.props.text && this.props.text.toUpperCase()}
+          {this.props.price ? this.props.price : <Icon name='angle-right' size={Metrics.icons.small} color={Colors.snow} style={styles.chevron_right} />}
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+}
