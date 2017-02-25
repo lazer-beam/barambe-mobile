@@ -20,6 +20,9 @@ import MapviewExample from '../Containers/MapviewExample'
 import APITestingScreen from '../Containers/APITestingScreen'
 import ThemeScreen from '../Containers/ThemeScreen'
 import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
+import BarLandingScreen from '../Containers/BarLandingScreen'
+import CreditCardScreen from '../Containers/CreditCardScreen'
+import CreditCardFormScreen from '../Containers/CreditCardFormScreen'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -45,6 +48,9 @@ class NavigationRouter extends Component {
 
             {/* Custom navigation bar example */}
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
+            <Scene key='barLandingScreen' component={BarLandingScreen} title='Bar Landing Screen' />
+            <Scene key='creditCardScreen' component={CreditCardScreen} title='Credit Cards' />
+            <Scene key='creditCardFormScreen' component={CreditCardFormScreen} title='Credit Card Form' />
           </Scene>
         </Scene>
       </Router>
