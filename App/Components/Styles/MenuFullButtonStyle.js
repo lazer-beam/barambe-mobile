@@ -11,7 +11,6 @@ export default StyleSheet.create({
     borderBottomColor: Colors.barambeGrey,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    backgroundColor: Colors.ember,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
@@ -31,5 +30,23 @@ export default StyleSheet.create({
   priceText: {
     fontSize: Fonts.size.small,
     color: Colors.barambeYellow
+  },
+  slideView: {
+    height: 20,
+    width: Metrics.screenWidth,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  xIcon: {
+    right: 35,
+    bottom: 5
+  },
+  closeTabBtn: {
+    backgroundColor: Colors.barambeGrey
+  },
+  slideText: {
+    color: Colors.barambeGrey,
+    right: 50
   }
 })
