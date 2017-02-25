@@ -4,7 +4,6 @@ import React from 'react'
 import { ScrollView, View, Image, Button } from 'react-native'
 import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
-import OrderModal from './MenuOrderModal'
 
 // Styles
 import styles from './Styles/MenuBarScreenStyle'
@@ -14,7 +13,6 @@ export default class MenuCocktail extends React.Component {
     super(props)
     this.state = {
       visibleHeight: Metrics.screenHeight,
-      renderModal: false,
       cocktailClicked: null
     }
     this.displayCocktailModal = this.displayCocktailModal.bind(this)
@@ -22,7 +20,6 @@ export default class MenuCocktail extends React.Component {
 
   displayCocktailModal (shot) {
     this.setState({
-      renderModal: true,
       cocktailClicked: shot
     })
   }
@@ -41,7 +38,6 @@ export default class MenuCocktail extends React.Component {
             styles={{marginTop: 0, marginBottom: 0, backgroundColor: Colors.barambeBlack}}
           />)}
         </ScrollView>
-        {this.state.renderModal ? <OrderModal order={this.state.cocktailClicked} /> : <OrderModal />}
         <Button color={Colors.barambeBlue} title='Close Tab' onPress={() => { console.log('closing tab') }} />
       </View>
     )
