@@ -1,2 +1,15 @@
 node_modules
 .env
+
+** android config **
+android/.gradle
+android/build
+android/local.properties
+android/yarn.lock
+android/app/build
+android/.idea/
+android/android.iml
+android/app/app.iml
+android/app/build/
+android/barambe.iml
+android/app/build.gradle
