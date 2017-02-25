@@ -5,34 +5,19 @@ import { Colors, Fonts, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  loginBox: {
-    padding: Metrics.doubleBaseMargin
+  menuHeaderImage: {
+    position: 'relative',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    height: 150
   },
-  loginButton: {
-    borderWidth: 1,
-    borderColor: Colors.charcoal,
-    backgroundColor: Colors.panther,
-    padding: 6
+  menuContainer: {
+    flex: 1,
+    paddingTop: Metrics.baseMargin
   },
-  loginText: {
-    textAlign: 'center',
-    color: Colors.silver
-  },
-  componentLabelContainer: {
-    ...ApplicationStyles.darkLabelContainer
-  },
-  componentLabel: {
-    ...ApplicationStyles.darkLabel
-  },
-  temperature: {
-    ...Fonts.style.h4,
-    color: Colors.snow
-  },
-  locale: {
-    ...Fonts.style.h4,
-    color: Colors.snow
-  },
-  groupContainer: {
-    ...ApplicationStyles.groupContainer
+  closeTabBtn: {
+    color: Colors.barambeYellow
   }
 })
