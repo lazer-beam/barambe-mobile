@@ -5,7 +5,7 @@
 
 ## Setting Up Docs
 
-* [Yarn Cheatsheet](https://github.com/infinitered/ignite)
+* [Yarn Cheatsheet](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc#.1ckrhd77a)
 
 * [React Native: Getting Started](https://facebook.github.io/react-native/docs/getting-started.html)
 

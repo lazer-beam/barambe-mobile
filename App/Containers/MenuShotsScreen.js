@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { ScrollView, View, Image, Button } from 'react-native'
-import { Metrics, Images } from '../Themes'
+import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
 import OrderModal from './MenuOrderModal'
 
@@ -37,11 +37,11 @@ export default class MenuShots extends React.Component {
             item={shot} price={shot.price}
             text={shot.name}
             key={shot.name}
-            styles={{marginTop: 0, marginBottom: 0, backgroundColor: '#1A2930'}}
+            styles={{marginTop: 0, marginBottom: 0, backgroundColor: Colors.barambeBlack}}
           />)}
         </ScrollView>
         {this.state.renderModal ? <OrderModal order={this.state.shotClicked} /> : <OrderModal />}
-        <Button title='Close Tab' onPress={() => { console.log('closing tab') }} />
+        <Button color={Colors.barambeBlue} title='Close Tab' onPress={() => { console.log('closing tab') }} />
       </View>
     )
   }
