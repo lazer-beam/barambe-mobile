@@ -1,9 +1,10 @@
 // @flow
 
 import React from 'react'
-import { ScrollView, View, Image, Button } from 'react-native'
+import { ScrollView, View, Image } from 'react-native'
 import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
+import ViewTabBtn from '../Components/MenuViewTabBtn'
 
 // Styles
 import styles from './Styles/MenuBarScreenStyle'
@@ -38,7 +39,7 @@ export default class MenuCocktail extends React.Component {
             styles={{marginTop: 0, marginBottom: 0, backgroundColor: Colors.barambeBlack}}
           />)}
         </ScrollView>
-        <Button color={Colors.barambeBlue} title='Close Tab' onPress={() => { console.log('closing tab') }} />
+        <ViewTabBtn />
       </View>
     )
   }
