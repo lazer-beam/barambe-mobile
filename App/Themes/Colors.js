@@ -20,7 +20,7 @@ const colors = {
   ember: 'rgba(164, 0, 48, 0.5)',
   fire: '#e73536',
   drawer: 'rgba(30, 30, 29, 0.95)',
-  barambeBlack: '#0A1612',
+  barambeBlack: '#3c3c3c',
   barambeGrey: '#C5C1C0',
   barambeBlue: '#1A2930',
   barambeYellow: '#F7CE3E'
