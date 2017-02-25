@@ -50,6 +50,18 @@ export default class PresentationScreen extends React.Component {
             Open Tab
           </RoundedButton>
 
+          <RoundedButton onPress={NavigationActions.barLandingScreen}>
+            Bar Landing
+          </RoundedButton>
+
+          <RoundedButton onPress={NavigationActions.creditCardScreen}>
+            Credit Card
+          </RoundedButton>
+
+          <RoundedButton onPress={NavigationActions.creditCardFormScreen}>
+            Card Form
+          </RoundedButton>
+
           <View style={styles.centered}>
             <Text style={styles.subtitle}>Made with ❤️ by Infinite Red</Text>
           </View>
