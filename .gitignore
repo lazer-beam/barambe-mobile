@@ -7,6 +7,11 @@ android/build
 android/local.properties
 android/yarn.lock
 android/app/build
+android/.idea/
+android/android.iml
+android/app/app.iml
+android/barambe.iml
+android/app/build.gradle
 
 ** misc **
 .DS_Store
