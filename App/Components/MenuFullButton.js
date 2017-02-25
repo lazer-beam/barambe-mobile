@@ -44,8 +44,6 @@ export default class FullButton extends React.Component {
         drinkName: order.name,
         tabId: TEMP_TAB_ID
       })
-    }).then(res => {
-      console.log('res', res)
     }).catch(err => {
       console.log('err', err)
     })
@@ -54,7 +52,6 @@ export default class FullButton extends React.Component {
   onSlide (order) {
     this.orderDrink(order)
     this.removeConfirmSlider()
-    this.setState({ hideSlider: true })
   }
 
   removeConfirmSlider () {
