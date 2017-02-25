@@ -47,7 +47,7 @@ export default class PresentationScreen extends React.Component {
           </RoundedButton>
 
           <RoundedButton onPress={NavigationActions.barMenu}>
-            Bar Menu
+            Open Tab
           </RoundedButton>
 
           <View style={styles.centered}>
