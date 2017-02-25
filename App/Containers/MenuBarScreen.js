@@ -1,12 +1,13 @@
 // @flow
 
 import React from 'react'
-import { ScrollView, View, Image, Button } from 'react-native'
+import { ScrollView, View, Image } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
+import ViewTabBtn from '../Components/MenuViewTabBtn'
 import MenuConfig from '../Config/MenuConfig'
 
 // Styles
@@ -72,10 +73,6 @@ export default class MenuBarScreen extends React.Component {
     })
   }
 
-  onSlide () {
-    console.log('onSlide')
-  }
-
   render () {
     return (
       <View style={styles.blackContainer}>
@@ -85,7 +82,7 @@ export default class MenuBarScreen extends React.Component {
           <MenuFullButton text={'Shots Menu'} onClickedItem={() => { this.renderShotsMenu() }} styles={{marginBottom: 0, marginTop: 0, backgroundColor: Colors.barambeBlack}} key={2} />
           <MenuFullButton text={'Cocktails Menu'} onClickedItem={() => { this.renderCocktailsMenu() }} styles={{marginTop: 0, backgroundColor: Colors.barambeBlack}} key={3} />
         </ScrollView>
-        <Button color={Colors.barambeBlue} title='Close Tab' onPress={() => { console.log('closing tab') }}>Close Tab</Button>
+        <ViewTabBtn />
       </View>
     )
   }
