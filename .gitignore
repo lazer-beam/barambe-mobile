@@ -7,3 +7,8 @@ android/build
 android/local.properties
 android/yarn.lock
 android/app/build
+
+** misc **
+.DS_Store
+App/.DS_Store
+npm-debug.log

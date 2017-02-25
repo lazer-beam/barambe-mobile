@@ -121,7 +121,7 @@ class APIResult extends React.Component {
 
   render () {
     let messageView = null
-    if (this.state.message) {
+    if (this.props.displayModal) {
       return this.renderView()
     }
 
