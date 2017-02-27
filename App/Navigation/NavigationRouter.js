@@ -23,6 +23,7 @@ import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import BarLandingScreen from '../Containers/BarLandingScreen'
 import CreditCardScreen from '../Containers/CreditCardScreen'
 import CreditCardFormScreen from '../Containers/CreditCardFormScreen'
+import TableScreen from '../Containers/TableScreen'
 
 import MenuBarScreen from '../Containers/MenuBarScreen'
 import MenuBeersScreen from '../Containers/MenuBeersScreen'
@@ -61,6 +62,7 @@ class NavigationRouter extends Component {
             <Scene key='barLandingScreen' component={BarLandingScreen} title='Bar Landing Screen' />
             <Scene key='creditCardScreen' component={CreditCardScreen} title='Credit Cards' />
             <Scene key='creditCardFormScreen' component={CreditCardFormScreen} title='Credit Card Form' />
+            <Scene key='tableScreen' component={TableScreen} title='Table Screen' />
           </Scene>
         </Scene>
       </Router>

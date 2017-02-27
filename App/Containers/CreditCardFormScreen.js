@@ -107,8 +107,11 @@ export default class CreditCardFormScreen extends React.Component {
       return;
     }
 
+
+    let splitCCNum = this.state.ccNumber.match(/.{1,4}/g).join(' ');
+
     var cardDetails = {
-      "card[number]": this.state.ccNumber,
+      "card[number]": splitCCNum,
       "card[exp_month]": this.state.expMonth,
       "card[exp_year]": this.state.expYear,
       "card[cvc]": this.state.cardCVC

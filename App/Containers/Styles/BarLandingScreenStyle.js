@@ -5,14 +5,27 @@ import { ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  groupContainer: {
-    ...ApplicationStyles.groupContainer
+  currentCard: {
+    flexDirection: 'row',
+    height: 25,
+    justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: 20
   },
   headerImage: {
     position: 'relative',
-    top: 150,
+    top: 10,
     left: 0,
-    bottom: 0,
-    right: 0
+    bottom: 10,
+    right: 0,
+    height: 150
+  },
+  tableInfo: {
+    height: 25,
+    flex: 1, 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 15,
+    marginBottom: 15
   }
 })
