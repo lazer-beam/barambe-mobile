@@ -46,7 +46,10 @@ export default class APITestingScreen extends React.Component {
   }
 
   renderMenuBar() {
-    NavigationActions.barMenu()
+    NavigationActions.barMenu({
+      customerStripe: this.state.customerStripe,
+      barStripe: this.state.barStripe
+    })
     // pass down stripes, table#
   }
 

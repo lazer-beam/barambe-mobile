@@ -134,7 +134,6 @@ export default class CreditCardFormScreen extends React.Component {
       },
       body: formBody
     }).then(respObj => {
-      let token = respObj;
       return respObj.json()
     }).then(json => {
       console.log('token obj: ', json);

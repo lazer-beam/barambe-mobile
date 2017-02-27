@@ -42,6 +42,7 @@ class MenuShots extends React.Component {
           {this.props.displayTab
           ? <MenuViewTabScreen />
           : this.props.shots.map(shot => <MenuFullButton
+            buyDrink={this.props.buyDrink}
             onClickedItem={this.displayShotModal}
             item={shot} price={shot.price}
             text={shot.name}

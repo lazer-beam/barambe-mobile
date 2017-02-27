@@ -22,6 +22,8 @@ class MenuBarScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
+      customerStripe: this.props.customerStripe,
+      barStripe: this.props.barStripe,
       visibleHeight: Metrics.screenHeight,
       beers: [],
       shots: [],
@@ -34,6 +36,7 @@ class MenuBarScreen extends React.Component {
     this.renderCocktailsMenu = this.renderCocktailsMenu.bind(this)
     this.convertPrices = this.convertPrices.bind(this)
     this.renderTabHistory = this.renderTabHistory.bind(this)
+    this.sendPay = this.sendPay.bind(this)
   }
 
   componentDidMount () {
@@ -61,19 +64,44 @@ class MenuBarScreen extends React.Component {
     })
   }
 
+  sendPay (amount) {
+    let payObj = {
+      amount: amount*100,
+      currency: 'usd',
+      stripeID: this.state.customerStripe,
+      barID: this.state.barStripe
+    }
+    console.log(`payObj.amount is: ${payObj.amount}`)
+    console.log(`payObj.currency is: ${payObj.currency}`)
+    console.log(`payObj.stripeID is: ${payObj.stripeID}`)
+    console.log(`payObj.barID is: ${payObj.barID}`)
+    return fetch(`${DOMAIN}/customer/pay`, {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payObj)
+    }).then(res => {
+      return res.json()
+    }).then(json => {
+      console.log(json)
+    }).catch(err => {
+      console.log(err.json())
+    })
+  }
+
   renderBeerMenu () {
-    NavigationActions.beersMenu({ beers: this.state.beers })
+    NavigationActions.beersMenu({ beers: this.state.beers, buyDrink: this.sendPay })
   }
 
   renderShotsMenu () {
-    NavigationActions.shotsMenu({ shots: this.state.shots })
+    NavigationActions.shotsMenu({ shots: this.state.shots, buyDrink: this.sendPay })
   }
 
   renderCocktailsMenu () {
     NavigationActions.cocktailsMenu({
       cocktails: this.state.cocktails,
       liquors: this.state.shots,
-      addIns: this.state.addIns
+      addIns: this.state.addIns,
+      buyDrink: this.sendPay
     })
   }
 
