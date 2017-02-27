@@ -1,9 +1,13 @@
 import React from 'react'
+<<<<<<< 46530d001f7b75bece463fa2362e5e275d848367
 <<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
 import { Modal, TouchableHighlight, ScrollView, View, Button, TextInput } from 'react-native'
 =======
 import { ScrollView, View, Button, TextInput } from 'react-native'
 >>>>>>> [progress]Format barLanding
+=======
+import { Modal, TouchableHighlight, ScrollView, View, Button, TextInput } from 'react-native'
+>>>>>>> [progress]Reformat barLanding, add addl data input
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Form from 'react-native-form'
 
@@ -14,6 +18,7 @@ export default class CreditCardFormScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
+<<<<<<< 46530d001f7b75bece463fa2362e5e275d848367
 <<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
       table: '',
       modalVisible: false
@@ -29,6 +34,17 @@ export default class CreditCardFormScreen extends React.Component {
     }
     this.submitTable = this.submitTable.bind(this);
 >>>>>>> [progress]Format barLanding
+=======
+      table: '',
+      modalVisible: false
+    }
+    this.submitTable = this.submitTable.bind(this);
+    this.setModalVisible = this.setModalVisible.bind(this);
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+>>>>>>> [progress]Reformat barLanding, add addl data input
   }
 
   submitTable() {
@@ -38,7 +54,10 @@ export default class CreditCardFormScreen extends React.Component {
 
   render () {
     return (
+<<<<<<< 46530d001f7b75bece463fa2362e5e275d848367
 <<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
+=======
+>>>>>>> [progress]Reformat barLanding, add addl data input
       <View style={{marginTop: 22}}>
         <Modal
           animationType={"slide"}
@@ -69,8 +88,11 @@ export default class CreditCardFormScreen extends React.Component {
       </View>
     );
     /*return (
+<<<<<<< 46530d001f7b75bece463fa2362e5e275d848367
 =======
 >>>>>>> [progress]Format barLanding
+=======
+>>>>>>> [progress]Reformat barLanding, add addl data input
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
         <Form ref="form">
@@ -85,10 +107,14 @@ export default class CreditCardFormScreen extends React.Component {
         </ScrollView>
         <Button title='Submit Card' onPress={() => { this.submitTable() }}>Submit Table Number</Button>
       </View>
+<<<<<<< 46530d001f7b75bece463fa2362e5e275d848367
 <<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
     )*/
 =======
     )
 >>>>>>> [progress]Format barLanding
+=======
+    )*/
+>>>>>>> [progress]Reformat barLanding, add addl data input
   }
 }
