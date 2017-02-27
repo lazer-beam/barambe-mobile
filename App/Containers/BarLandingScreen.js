@@ -56,7 +56,7 @@ export default class BarScreen extends React.Component {
 // @flow
 
 import React from 'react'
-import { ScrollView, View, Image, Button } from 'react-native'
+import { TextInput, Text, ScrollView, View, Image, Button } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
@@ -65,7 +65,7 @@ import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
 
 // Styles
-import styles from './Styles/MenuBarScreenStyle'
+import styles from './Styles/BarLandingScreenStyle'
 
 const DOMAIN = MenuConfig.domain
 
@@ -73,21 +73,62 @@ export default class APITestingScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
-      visibleHeight: Metrics.screenHeight,
-      beers: [],
-      shots: [],
-      cocktails: [],
-      addIns: []
+      table: 'Enter table #',
+      // the below should be props
+      cardBrand: 'Visa',
+      cardLast4: '4242',
+      customerStripe: 'cus_AB1NVGME7exD4z',
+      barStripe: 'acct_19nbJhDCKIISg37F'
     }
+    this.renderCardForm = this.renderCardForm.bind(this);
+    this.renderMenuBar = this.renderMenuBar.bind(this);
+    this.changeTable = this.changeTable.bind(this);
+  }
+
+  changeTable (tableNum) {
+    this.setState({table: tableNum})
+  }
+
+  renderTableScreen () {
+    NavigationActions.tableScreen({
+      changeTable: this.changeTable
+    })
+  }
+
+  renderCardForm () {
+    NavigationActions.creditCardFormScreen()
+  }
+
+  renderMenuBar() {
+    NavigationActions.barMenu()
+    // pass down stripes, table#
   }
 
   render () {
     return (
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
-          <Image source={{uri:'http://img04.deviantart.net/4281/i/2010/010/f/6/paddy__s_pub_by_detroitchicago.jpg'}} style={styles.menuHeaderImage} resizeMode='stretch' />
+          <Image source={{uri:'http://img04.deviantart.net/4281/i/2010/010/f/6/paddy__s_pub_by_detroitchicago.jpg'}} 
+          style={styles.headerImage} 
+          resizeMode='stretch' />
+          <View style={styles.tableInfo}>
+            <Text style={{color:'#C5C1C0', fontSize: 17}}>TABLE NUMBER (optional):</Text>
+            <Text style={{color:'#F7CE3E', fontSize: 15}}>{this.state.table}</Text>
+          </View>
+          <MenuFullButton text={'Change Table'} 
+            onClickedItem={() => { this.renderTableScreen() }} 
+            styles={{backgroundColor: '#1A2930'}} 
+            key={1} />
+          <View style={styles.currentCard}>
+            <Text style={{color:'#C5C1C0', fontSize: 17}}>ACTIVE CARD:</Text>
+            <Text style={{color:'#F7CE3E', fontSize: 15}}>{this.state.cardBrand} {this.state.cardLast4}</Text>
+          </View>
+          <MenuFullButton text={'Change Card'} 
+            onClickedItem={() => { this.renderCardForm() }} 
+            styles={{backgroundColor: '#1A2930'}} 
+            key={2} />
         </ScrollView>
-        <Button title='Open Tab' onPress={() => { console.log('closing tab') }}></Button>
+        <Button title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
       </View>
     )
   }
