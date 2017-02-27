@@ -1,5 +1,9 @@
 import React from 'react'
+<<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
 import { Modal, TouchableHighlight, ScrollView, View, Button, TextInput } from 'react-native'
+=======
+import { ScrollView, View, Button, TextInput } from 'react-native'
+>>>>>>> [progress]Format barLanding
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Form from 'react-native-form'
 
@@ -10,6 +14,7 @@ export default class CreditCardFormScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
+<<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
       table: '',
       modalVisible: false
     }
@@ -19,6 +24,11 @@ export default class CreditCardFormScreen extends React.Component {
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
+=======
+      table: ''
+    }
+    this.submitTable = this.submitTable.bind(this);
+>>>>>>> [progress]Format barLanding
   }
 
   submitTable() {
@@ -28,6 +38,7 @@ export default class CreditCardFormScreen extends React.Component {
 
   render () {
     return (
+<<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
       <View style={{marginTop: 22}}>
         <Modal
           animationType={"slide"}
@@ -58,6 +69,8 @@ export default class CreditCardFormScreen extends React.Component {
       </View>
     );
     /*return (
+=======
+>>>>>>> [progress]Format barLanding
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
         <Form ref="form">
@@ -72,6 +85,10 @@ export default class CreditCardFormScreen extends React.Component {
         </ScrollView>
         <Button title='Submit Card' onPress={() => { this.submitTable() }}>Submit Table Number</Button>
       </View>
+<<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
     )*/
+=======
+    )
+>>>>>>> [progress]Format barLanding
   }
 }
