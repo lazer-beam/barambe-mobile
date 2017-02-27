@@ -40,9 +40,14 @@ class MenuBeers extends React.Component {
       <View style={styles.blackContainer}>
         <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
         <ScrollView style={styles.menuContainer} ref='container' scrollEnabled={false}>
+<<<<<<< ead0e6e20cd2ab5812177c8a8edc1252cf2db694
           {this.props.displayTab
           ? <MenuViewTabScreen />
           : this.props.beers.map(beer => <MenuFullButton
+=======
+          {this.props.beers.map(beer => <MenuFullButton
+            buyDrink={this.props.buyDrink}
+>>>>>>> [feat]Add pay functionality to menu screens
             onClickedItem={this.displayBeerModal}
             item={beer}
             price={beer.price}
