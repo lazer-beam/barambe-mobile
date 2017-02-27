@@ -26,6 +26,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 15,
-    marginBottom: 15
+    marginBottom: 5
+  },
+  barHeader: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color:'#C5C1C0'
   }
 })
