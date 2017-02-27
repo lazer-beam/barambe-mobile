@@ -58,7 +58,7 @@ export default class CreditCardFormScreen extends React.Component {
 // @flow
 
 import React from 'react'
-import { ScrollView, View, Image, Button, TextInput, Text } from 'react-native'
+import { Alert, ScrollView, View, Image, Button, TextInput, Text } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Form from 'react-native-form'
@@ -76,15 +76,37 @@ export default class CreditCardFormScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
-      ccNumber: 'Card Number: XXXX XXXX XXXX XXXX',
-      expMonth: 'Exp. Month: "XX"',
-      expYear: 'Exp. Year: "XXXX"',
-      cardCVC: 'CVC: XXX'
+      ccNumber: '',
+      expMonth: '',
+      expYear: '',
+      cardCVC: ''
     }
     this.submitCard = this.submitCard.bind(this)
   }
 
   submitCard() {
+    let alertMsg = '';
+    if (this.state.ccNumber.length !== 16) {
+      alertMsg = 'Please check your credit card number'
+    } else if (this.state.expMonth.length !== 2) {
+      alertMsg = 'Please check your expiration month'
+    } else if (this.state.expYear.length !== 4) {
+      alertMsg = 'Please check your expiration year'
+    } else if (this.state.cardCVC.length !== 3) {
+      alertMsg = 'Please check your card CVC'
+    }
+
+    if (alertMsg) {
+      Alert.alert(
+        'Incorrect Data Format',
+        alertMsg,
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      )
+      return;
+    }
+
     var cardDetails = {
       "card[number]": this.state.ccNumber,
       "card[exp_month]": this.state.expMonth,
@@ -138,10 +160,10 @@ export default class CreditCardFormScreen extends React.Component {
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
         <Form ref="form">
-          <TextInput type="TextInput" name="ccNumber" onChangeText={(text) => this.setState({ccNumber: text})} value={this.state.ccNumber} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />               
-          <TextInput type="TextInput" name="expMonth" onChangeText={(text) => this.setState({expMonth: text})} value={this.state.expMonth} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
-          <TextInput type="TextInput" name="expYear" onChangeText={(text) => this.setState({expYear: text})} value={this.state.expYear} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
-          <TextInput type="TextInput" name="cardCVC" onChangeText={(text) => this.setState({cardCVC: text})} value={this.state.cardCVC} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
+          <TextInput type="TextInput" name="ccNumber" placeholder="Credit Card Number" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({ccNumber: text})} value={this.state.ccNumber} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />               
+          <TextInput type="TextInput" name="expMonth" placeholder="Exp. Month: XX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({expMonth: text})} value={this.state.expMonth} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
+          <TextInput type="TextInput" name="expYear" placeholder="Exp. Year: XXXX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({expYear: text})} value={this.state.expYear} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
+          <TextInput type="TextInput" name="cardCVC" placeholder="Card CVC: XXX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({cardCVC: text})} value={this.state.cardCVC} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
         </Form>
         </ScrollView>
         <Button title='Submit Card' onPress={() => { this.submitCard() }}>Close Tab</Button>
