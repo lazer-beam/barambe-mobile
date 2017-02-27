@@ -1,3 +1,4 @@
+<<<<<<< 46530d001f7b75bece463fa2362e5e275d848367
 <<<<<<< 23b70197aacda088e9f7540a9b74b1d2bc8bc537
 import React from 'react'
 import { TextInput, Text, ScrollView, View, Image, Button } from 'react-native'
@@ -132,6 +133,8 @@ export default class APITestingScreen extends React.Component {
 
 // @flow
 
+=======
+>>>>>>> [progress]Reformat barLanding, add addl data input
 import React from 'react'
 import { TextInput, Text, ScrollView, View, Image, Button } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -150,17 +153,20 @@ export default class APITestingScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
-      table: 'Enter table #',
+      table: '',
       // the below should be props
       cardBrand: 'Visa',
       cardLast4: '4242',
       customerStripe: 'cus_AB1NVGME7exD4z',
-      barStripe: 'acct_19nbJhDCKIISg37F'
+      barStripe: 'acct_19nbJhDCKIISg37F',
+      barName: "Paddy's Pub"
     }
     this.renderCardForm = this.renderCardForm.bind(this);
     this.renderMenuBar = this.renderMenuBar.bind(this);
     this.changeTable = this.changeTable.bind(this);
   }
+
+  // add a component mount that retrieves card info, need for changing cards -- should re-render with new card info
 
   changeTable (tableNum) {
     this.setState({table: tableNum})
@@ -185,25 +191,28 @@ export default class APITestingScreen extends React.Component {
     return (
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
+          <Text style={styles.barHeader}>{this.state.barName}</Text>
           <Image source={{uri:'http://img04.deviantart.net/4281/i/2010/010/f/6/paddy__s_pub_by_detroitchicago.jpg'}} 
           style={styles.headerImage} 
           resizeMode='stretch' />
-          <View style={styles.tableInfo}>
-            <Text style={{color:'#C5C1C0', fontSize: 17}}>TABLE NUMBER (optional):</Text>
-            <Text style={{color:'#F7CE3E', fontSize: 15}}>{this.state.table}</Text>
-          </View>
-          <MenuFullButton text={'Change Table'} 
-            onClickedItem={() => { this.renderTableScreen() }} 
-            styles={{backgroundColor: '#1A2930'}} 
-            key={1} />
+            <View style={styles.tableInfo}>
+              <Text style={{color:'#C5C1C0', fontSize: 17}}>TABLE NUMBER (optional):</Text>
+            </View>
+            <TextInput type="TextInput" 
+              name="tableNumber" 
+              placeholder="Enter Table Number" 
+              placeholderTextColor="#F7CE3E"
+              onChangeText={(text) => this.setState({table: text})}
+              value={this.state.table}
+              style={{ color:'#F7CE3E' }} />
           <View style={styles.currentCard}>
             <Text style={{color:'#C5C1C0', fontSize: 17}}>ACTIVE CARD:</Text>
-            <Text style={{color:'#F7CE3E', fontSize: 15}}>{this.state.cardBrand} {this.state.cardLast4}</Text>
+            <Text style={{color:'#C5C1C0', fontSize: 15}}>{this.state.cardBrand} {this.state.cardLast4}</Text>
           </View>
-          <MenuFullButton text={'Change Card'} 
-            onClickedItem={() => { this.renderCardForm() }} 
-            styles={{backgroundColor: '#1A2930'}} 
-            key={2} />
+          <Text style={{color:'#F7CE3E', fontSize: 14, marginLeft: 5}} 
+            onPress={() => { this.renderCardForm() }}>
+            Change Card
+          </Text>
         </ScrollView>
         <Button title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
       </View>
