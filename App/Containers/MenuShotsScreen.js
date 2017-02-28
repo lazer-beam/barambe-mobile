@@ -2,14 +2,18 @@
 
 import React from 'react'
 import { ScrollView, View, Image } from 'react-native'
+import { connect } from 'react-redux'
+
+import CustomerActions from '../Redux/CustomerRedux'
 import { Metrics, Images, Colors } from '../Themes'
-import MenuFullButton from '../Components/MenuFullButton'
-import ViewTabBtn from '../Components/MenuViewTabBtn'
+import MenuFullButton from './MenuFullButton'
+import MenuViewTabScreen from './MenuViewTabScreen'
+import ViewTabBtn from './MenuViewTabBtn'
 
 // Styles
 import styles from './Styles/MenuBarScreenStyle'
 
-export default class MenuShots extends React.Component {
+class MenuShots extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
@@ -17,6 +21,7 @@ export default class MenuShots extends React.Component {
       shotClicked: null
     }
     this.displayShotModal = this.displayShotModal.bind(this)
+    this.renderTabHistory = this.renderTabHistory.bind(this)
   }
 
   displayShotModal (shot) {
@@ -25,21 +30,43 @@ export default class MenuShots extends React.Component {
     })
   }
 
+  renderTabHistory () {
+    this.props.renderTabView(true)
+  }
+
   render () {
     return (
       <View style={styles.blackContainer}>
         <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
         <ScrollView style={styles.container} ref='container'>
-          {this.props.shots.map(shot => <MenuFullButton
+          {this.props.displayTab
+          ? <MenuViewTabScreen />
+          : this.props.shots.map(shot => <MenuFullButton
             onClickedItem={this.displayShotModal}
             item={shot} price={shot.price}
             text={shot.name}
             key={shot.name}
             styles={{marginTop: 0, marginBottom: 0, backgroundColor: Colors.barambeBlack}}
-          />)}
+            />)
+          }
         </ScrollView>
-        <ViewTabBtn />
+
+        <ViewTabBtn renderTabHistory={this.renderTabHistory} />
       </View>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    displayTab: state.customer.displayTab
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    renderTabView: display => dispatch(CustomerActions.renderTabView(display))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuShots)
