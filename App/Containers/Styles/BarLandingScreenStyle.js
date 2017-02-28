@@ -1,16 +1,21 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles } from '../../Themes/'
+import { ApplicationStyles, Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
+  barLandingContainer:{
+      flex: 1,
+      marginTop: Metrics.BarMenuTopMargin,
+      backgroundColor: '#1A2930'
+    },
   currentCard: {
     flexDirection: 'row',
     height: 25,
+    width: 300,
     justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 20
+    marginTop: 10
   },
   headerImage: {
     position: 'relative',
@@ -25,8 +30,10 @@ export default StyleSheet.create({
     flex: 1, 
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 15,
-    marginBottom: 5
+    marginTop: 50,
+    paddingTop: 5,
+    borderTopWidth: 0.5,
+    borderTopColor: '#C5C1C0' 
   },
   barHeader: {
     textAlign: 'center',

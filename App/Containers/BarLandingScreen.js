@@ -50,6 +50,7 @@ export default class APITestingScreen extends React.Component {
 
   renderMenuBar() {
     NavigationActions.barMenu({
+      table: this.state.table,
       customerStripe: this.state.customerStripe,
       barStripe: this.props.barStripe
     })
@@ -58,7 +59,7 @@ export default class APITestingScreen extends React.Component {
 
   render () {
     return (
-      <View style={styles.blackContainer}>
+      <View style={styles.barLandingContainer}>
         <ScrollView style={styles.container} ref='container'>
           <Text style={styles.barHeader}>{this.props.name}</Text>
           <Image source={{uri: this.props.picture}} 
@@ -71,6 +72,7 @@ export default class APITestingScreen extends React.Component {
               name="tableNumber" 
               placeholder="Enter Table Number" 
               placeholderTextColor="#F7CE3E"
+              underlineColorAndroid="#C5C1C0"
               onChangeText={(text) => this.setState({table: text})}
               value={this.state.table}
               style={{ color:'#F7CE3E' }} />
@@ -83,7 +85,7 @@ export default class APITestingScreen extends React.Component {
             Change Card
           </Text>
         </ScrollView>
-        <Button title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
+        <Button color='#F7CE3E' title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
       </View>
     )
   }
