@@ -24,6 +24,8 @@ import BarLandingScreen from '../Containers/BarLandingScreen'
 import CreditCardScreen from '../Containers/CreditCardScreen'
 import CreditCardFormScreen from '../Containers/CreditCardFormScreen'
 import TableScreen from '../Containers/TableScreen'
+import NearbyBarsScreen from '../Containers/NearbyBarsScreen'
+import GeolocationTestScreen from '../Containers/GeolocationTestScreen.js'
 
 import MenuBarScreen from '../Containers/MenuBarScreen'
 import MenuBeersScreen from '../Containers/MenuBeersScreen'
@@ -62,7 +64,8 @@ class NavigationRouter extends Component {
             <Scene key='barLandingScreen' component={BarLandingScreen} title='Bar Landing Screen' />
             <Scene key='creditCardScreen' component={CreditCardScreen} title='Credit Cards' />
             <Scene key='creditCardFormScreen' component={CreditCardFormScreen} title='Credit Card Form' />
-            <Scene key='tableScreen' component={TableScreen} title='Table Screen' />
+            <Scene key='nearbyBarsScreen' component={NearbyBarsScreen} title='Nearby Bars Screen' />
+            <Scene key='geolocationTestScreen' component={GeolocationTestScreen} title='Geolocation Test Screen' />
           </Scene>
         </Scene>
       </Router>

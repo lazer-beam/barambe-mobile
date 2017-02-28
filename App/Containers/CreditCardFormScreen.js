@@ -100,13 +100,10 @@ export default class CreditCardFormScreen extends React.Component {
       Alert.alert(
         'Incorrect Data Format',
         alertMsg,
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]
+        [{text: 'OK', onPress: () => console.log('OK Pressed')},]
       )
       return;
     }
-
 
     let splitCCNum = this.state.ccNumber.match(/.{1,4}/g).join(' ');
 
