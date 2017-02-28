@@ -39,34 +39,18 @@ class NavigationRouter extends Component {
   render () {
     return (
       <Router>
-        <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='presentationScreen' component={PresentationScreen} title='Ignite' renderLeftButton={NavItems.hamburgerButton} />
-            <Scene key='componentExamples' component={AllComponentsScreen} title='Components' />
-            <Scene key='usageExamples' component={UsageExamplesScreen} title='Usage' rightTitle='Example' onRight={() => window.alert('Example Pressed')} />
-            <Scene key='login' component={LoginScreen} title='Login' hideNavBar />
-            <Scene key='listviewExample' component={ListviewExample} title='Listview Example' />
-            <Scene key='listviewGridExample' component={ListviewGridExample} title='Listview Grid' />
-            <Scene key='listviewSectionsExample' component={ListviewSectionsExample} title='Listview Sections' />
-            <Scene key='listviewSearchingExample' component={ListviewSearchingExample} title='Listview Searching' navBar={CustomNavBar} />
-            <Scene key='mapviewExample' component={MapviewExample} title='Mapview Example' />
-            <Scene key='apiTesting' component={APITestingScreen} title='API Testing' />
-            <Scene key='theme' component={ThemeScreen} title='Theme' />
+            <Scene initial key='nearbyBarsScreen' component={NearbyBarsScreen} title='BARAMBE' />
 
-            <Scene key='barMenu' component={MenuBarScreen} title='Bar Menu' />
-            <Scene key='beersMenu' component={MenuBeersScreen} title='Beers Menu' />
-            <Scene key='shotsMenu' component={MenuShotsScreen} title='Shots Menu' />
-            <Scene key='cocktailsMenu' component={MenuCocktailsScreen} title='Cocktails Menu' />
+            <Scene key='barMenu' component={MenuBarScreen} title='Menu' />
+            <Scene key='beersMenu' component={MenuBeersScreen} title='Beers' />
+            <Scene key='shotsMenu' component={MenuShotsScreen} title='Shots' />
+            <Scene key='cocktailsMenu' component={MenuCocktailsScreen} title='Cocktails' />
 
-            {/* Custom navigation bar example */}
-            <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
-            <Scene key='barLandingScreen' component={BarLandingScreen} title='Bar Landing Screen' />
-            <Scene key='creditCardScreen' component={CreditCardScreen} title='Credit Cards' />
-            <Scene key='creditCardFormScreen' component={CreditCardFormScreen} title='Credit Card Form' />
-            <Scene key='nearbyBarsScreen' component={NearbyBarsScreen} title='Nearby Bars Screen' />
+            <Scene key='barLandingScreen' component={BarLandingScreen} title='' />
+            <Scene key='creditCardFormScreen' component={CreditCardFormScreen} title='Credit Card' />
             <Scene key='geolocationTestScreen' component={GeolocationTestScreen} title='Geolocation Test Screen' />
           </Scene>
-        </Scene>
       </Router>
     )
   }

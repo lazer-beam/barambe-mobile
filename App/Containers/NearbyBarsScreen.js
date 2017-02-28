@@ -75,8 +75,8 @@ export default class NearbyBarScreen extends React.Component {
   componentDidMount() {
     // navigator.geolocation.getCurrentPosition(
     //   (position) => {
-    //     let currentLocation = JSON.stringify(position);
-    //     console.log(`Current location: ${currentLocation}`)
+    //     let currentLocation = position;
+    //     console.log(`Current location: ${JSON.stringify(currentLocation)}`)
     //     this.setState({
     //       currentLongitude: currentLocation.coords.longitude,
     //       currentLatitude: currentLocation.coords.latitude
@@ -84,7 +84,7 @@ export default class NearbyBarScreen extends React.Component {
     //   },
     //   (error) => alert(JSON.stringify(error)),
     //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-      // asynchronously get current position, send request to retrieve nearby bars, which populates this.state.bars
+    //   // asynchronously get current position, send request to retrieve nearby bars, which populates this.state.bars
     // );
   }
 
@@ -94,8 +94,8 @@ export default class NearbyBarScreen extends React.Component {
         <Text style={styles.barHeader}>NEARBY BARS</Text>
         <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
         <ScrollView style={styles.container} ref='container'>
-          {this.state.bars.map(barObj => {
-            return <View style={styles.listedBar}>
+          {this.state.bars.map((barObj, idx) => {
+            return <View key={idx} style={styles.listedBar}>
               <Text style={{color: '#F7CE3E', fontSize: 20}} 
                 onPress={() => this.renderBarLanding(barObj)}>
                 {barObj.name}

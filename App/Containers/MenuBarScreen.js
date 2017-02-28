@@ -84,7 +84,7 @@ class MenuBarScreen extends React.Component {
     }).then(json => {
       console.log(json)
     }).catch(err => {
-      console.log(err.json())
+      console.log('err', err)
     })
   }
 
