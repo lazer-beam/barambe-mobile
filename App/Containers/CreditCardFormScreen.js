@@ -1,73 +1,110 @@
-import React, { Component } from 'react'
-import styles from './Styles/CreditCardFormScreenStyle'
-import { View, TextInput, Button } from 'react-native' 
+import React from 'react'
+import { Alert, ScrollView, View, Image, Button, TextInput, Text } from 'react-native'
+import RNFetchBlob from 'react-native-fetch-blob'
+import { Actions as NavigationActions } from 'react-native-router-flux'
+import Form from 'react-native-form'
+
+import { Metrics, Images } from '../Themes'
+import MenuFullButton from '../Components/MenuFullButton'
+import MenuConfig from '../Config/MenuConfig'
+
+import styles from './Styles/MenuBarScreenStyle'
+
+const DOMAIN = MenuConfig.domain
 
 export default class CreditCardFormScreen extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props: Object) {
+    super(props)
     this.state = {
-      ccNumber: 'Credit Card Number',
-      expMonth: 'Exp. Month',
-      expYear: 'Exp. Year',
-      cardCVC: 'CVC'
-    };
+      ccNumber: '',
+      expMonth: '',
+      expYear: '',
+      cardCVC: ''
+    }
+    this.submitCard = this.submitCard.bind(this)
   }
 
-  createToken(cardNum, expMonth, expYear, CVC) {
-    let cardObj = {
-      "card[number]": cardNum,
-      "card[exp_month]": expMonth,
-      "card[exp_year]": expYear,
-      "card[cvc]": CVC
+  submitCard() {
+    let alertMsg = '';
+    if (this.state.ccNumber.length !== 16) {
+      alertMsg = 'Please check your credit card number'
+    } else if (this.state.expMonth.length !== 2) {
+      alertMsg = 'Please check your expiration month'
+    } else if (this.state.expYear.length !== 4) {
+      alertMsg = 'Please check your expiration year'
+    } else if (this.state.cardCVC.length !== 3) {
+      alertMsg = 'Please check your card CVC'
     }
 
-    let formBody = [];
-    for (let param in cardObj) {
-      var key = encodeURIComponent(param);
-      var val = encodeURIComponent(cardDetails[param]);
-      formBody.push(key + '=' + val);
+    if (alertMsg) {
+      Alert.alert(
+        'Incorrect Data Format',
+        alertMsg,
+        [{text: 'OK', onPress: () => console.log('OK Pressed')},]
+      )
+      return;
     }
-    formBody = formBody.join('&')
-    return fetch(stripe_url + 'tokens', {
+
+    let splitCCNum = this.state.ccNumber.match(/.{1,4}/g).join(' ');
+    var cardDetails = {
+      "card[number]": splitCCNum,
+      "card[exp_month]": this.state.expMonth,
+      "card[exp_year]": this.state.expYear,
+      "card[cvc]": this.state.cardCVC
+    }
+
+    var formBody = [];
+    for (var property in cardDetails) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(cardDetails[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
+    return fetch('https://api.stripe.com/v1/' + 'tokens', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ' + secret_key
+        'Authorization': 'Bearer ' + 'pk_test_wzRymKaVglngAKFqA7AkEdQf'
       },
       body: formBody
-    });
+    }).then(respObj => {
+      return respObj.json()
+    }).then(json => {
+      console.log('token obj: ', json);
+      console.log('token id: ', json.id);
+      console.log(`card info: ${json.card.brand}, ${json.card.last4}`);
+      return customerInfo = {
+        token: json.id,
+        cardBrand: json.card.brand,
+        last4: json.card.last4,
+        authId: 'testAuthId'
+      }
+    }).then(cusInfo => {
+      console.log(`${DOMAIN}/customer/saveInfo`)
+      return fetch(`${DOMAIN}/customer/saveInfo`, {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(cusInfo)
+      })
+    }).catch(err => {console.log(err)});
+
+    console.log(formBody)
   }
-
-
 
   render () {
     return (
-      <View style={styles.mainContainer}>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({ccNumber: text})}
-          value={this.state.ccNumber}
-        />
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({expMonth: text})}
-          value={this.state.expMonth}
-        />
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({expYear: text})}
-          value={this.state.expYear}
-        />
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({name: text})}
-          value={this.state.name}
-        />
-        <Button
-          onPress={onPressLearnMore}
-          title="Add Card"
-        />                   
+      <View style={styles.blackContainer}>
+        <ScrollView style={styles.container} ref='container'>
+        <Form ref="form">
+          <TextInput type="TextInput" name="ccNumber" placeholder="Credit Card Number" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({ccNumber: text})} value={this.state.ccNumber} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />               
+          <TextInput type="TextInput" name="expMonth" placeholder="Exp. Month: XX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({expMonth: text})} value={this.state.expMonth} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
+          <TextInput type="TextInput" name="expYear" placeholder="Exp. Year: XXXX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({expYear: text})} value={this.state.expYear} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
+          <TextInput type="TextInput" name="cardCVC" placeholder="Card CVC: XXX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({cardCVC: text})} value={this.state.cardCVC} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
+        </Form>
+        </ScrollView>
+        <Button color='#F7CE3E' title='Submit Card' onPress={() => { this.submitCard() }}></Button>
       </View>
     )
   }

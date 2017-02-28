@@ -26,6 +26,14 @@ export default class PresentationScreen extends React.Component {
             </Text>
           </View>
 
+          <RoundedButton onPress={NavigationActions.geolocationTestScreen}>
+            Geolocation Test Screen
+          </RoundedButton>
+
+          <RoundedButton onPress={NavigationActions.nearbyBarsScreen}>
+            Nearby Bars Screen
+          </RoundedButton>
+
           <RoundedButton onPress={NavigationActions.componentExamples}>
             Component Examples Screen
           </RoundedButton>
