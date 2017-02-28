@@ -89,11 +89,11 @@ class MenuBarScreen extends React.Component {
   }
 
   renderBeerMenu () {
-    NavigationActions.beersMenu({ beers: this.state.beers, buyDrink: this.sendPay })
+    NavigationActions.beersMenu({ beers: this.state.beers, buyDrink: this.sendPay, table: this.props.table })
   }
 
   renderShotsMenu () {
-    NavigationActions.shotsMenu({ shots: this.state.shots, buyDrink: this.sendPay })
+    NavigationActions.shotsMenu({ shots: this.state.shots, buyDrink: this.sendPay, table: this.props.table })
   }
 
   renderCocktailsMenu () {
@@ -101,7 +101,8 @@ class MenuBarScreen extends React.Component {
       cocktails: this.state.cocktails,
       liquors: this.state.shots,
       addIns: this.state.addIns,
-      buyDrink: this.sendPay
+      buyDrink: this.sendPay,
+      table: this.props.table
     })
   }
 

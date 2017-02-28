@@ -47,7 +47,8 @@ export default class FullButton extends React.Component {
       method: 'POST',
       body: JSON.stringify({
         drinkName: order.name,
-        tabId: TEMP_TAB_ID
+        tabId: TEMP_TAB_ID,
+        table: this.props.table
       })
     }).catch(err => {
       console.log('err', err)
