@@ -43,6 +43,7 @@ class MenuBeers extends React.Component {
           {this.props.displayTab
           ? <MenuViewTabScreen />
           : this.props.beers.map(beer => <MenuFullButton
+            buyDrink={this.props.buyDrink}
             onClickedItem={this.displayBeerModal}
             item={beer}
             price={beer.price}
