@@ -4,7 +4,7 @@ import React from 'react'
 import { TouchableOpacity, Text, View, ScrollView } from 'react-native'
 import {SlideButton, SlideDirection} from 'react-native-slide-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import styles from './Styles/MenuFullButtonStyle'
+import styles from '../Containers/Styles/MenuFullButtonStyle'
 import { Colors, Metrics } from '../Themes'
 import MenuConfig from '../Config/MenuConfig'
 
