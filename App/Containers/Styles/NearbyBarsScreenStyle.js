@@ -3,6 +3,11 @@ import { ApplicationStyles, Metrics, Colors } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
+  nearbyBarsContainer:{
+      flex: 1,
+      marginTop: Metrics.BarMenuTopMargin,
+      backgroundColor: '#1A2930'
+    },
   menuHeaderImage: {
     position: 'relative',
     top: 0,
@@ -13,6 +18,7 @@ export default StyleSheet.create({
   },
   barHeader: {
     marginTop: 10,
+    marginBottom: 10,
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
@@ -26,11 +32,14 @@ export default StyleSheet.create({
     color: Colors.barambeYellow
   },
   listedBar: {
-    width: 250,
+    width: 300,
     height: 30,
     alignSelf: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#C5C1C0', 
-    marginBottom: 20
+    borderTopWidth: 1,
+    borderTopColor: '#C5C1C0', 
+    marginBottom: 30,
+    flex: 1, 
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })

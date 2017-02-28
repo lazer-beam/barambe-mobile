@@ -4,6 +4,7 @@ import React from 'react'
 import { ScrollView, View, Image, Text } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import Entypo from 'react-native-vector-icons/Entypo'
 
 import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
@@ -40,10 +41,11 @@ export default class NearbyBarScreen extends React.Component {
         authId: 'leialoha',
         name: 'Lei Aloha'
       }],
-      currentLongitude: '-122.084',
-      currentLatitude: '37.422'
+      currentLongitude: '-118.390891',
+      currentLatitude: '33.976002'
     }
     this.renderBarLanding = this.renderBarLanding.bind(this)
+    this.calcDistance = this.calcDistance.bind(this)
   }
 
   renderBarLanding(barObj) {
@@ -53,6 +55,21 @@ export default class NearbyBarScreen extends React.Component {
       picture: barObj.picture,
       authId: barObj.authId
     })
+  }
+
+  calcDistance(barPos) {
+    let barLat = barPos[0]
+    let barLong = barPos[1]
+
+    var radlat1 = Math.PI * this.state.currentLatitude/180
+    var radlat2 = Math.PI * barLat/180
+    var theta = this.state.currentLongitude-barLong
+    var radtheta = Math.PI * theta/180
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    dist = Math.acos(dist)
+    dist = dist * 180/Math.PI
+    dist = dist * 60 * 1.1515
+    return dist.toFixed(2)
   }
 
   componentDidMount() {
@@ -73,14 +90,18 @@ export default class NearbyBarScreen extends React.Component {
 
   render () {
     return (
-      <View style={styles.blackContainer}>
+      <View style={styles.nearbyBarsContainer}>
         <Text style={styles.barHeader}>NEARBY BARS</Text>
+        <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
         <ScrollView style={styles.container} ref='container'>
           {this.state.bars.map(barObj => {
             return <View style={styles.listedBar}>
               <Text style={{color: '#F7CE3E', fontSize: 20}} 
                 onPress={() => this.renderBarLanding(barObj)}>
                 {barObj.name}
+              </Text>
+              <Text style={{color: '#F7CE3E'}}>
+                {this.calcDistance(barObj.location)} mi
               </Text>
             </View>
           })}
