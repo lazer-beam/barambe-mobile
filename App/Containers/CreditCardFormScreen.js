@@ -8,7 +8,6 @@ import { Metrics, Images } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
 
-// Styles
 import styles from './Styles/MenuBarScreenStyle'
 
 const DOMAIN = MenuConfig.domain
@@ -41,28 +40,12 @@ export default class CreditCardFormScreen extends React.Component {
       Alert.alert(
         'Incorrect Data Format',
         alertMsg,
-<<<<<<< 23b70197aacda088e9f7540a9b74b1d2bc8bc537
         [{text: 'OK', onPress: () => console.log('OK Pressed')},]
-=======
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]
->>>>>>> [fix]Show alert on cardForm on faulty data format
       )
       return;
     }
 
-<<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
-<<<<<<< 23b70197aacda088e9f7540a9b74b1d2bc8bc537
     let splitCCNum = this.state.ccNumber.match(/.{1,4}/g).join(' ');
-
-=======
->>>>>>> [fix]Show alert on cardForm on faulty data format
-=======
-
-    let splitCCNum = this.state.ccNumber.match(/.{1,4}/g).join(' ');
-
->>>>>>> [progress]Format barLanding
     var cardDetails = {
       "card[number]": splitCCNum,
       "card[exp_month]": this.state.expMonth,
@@ -121,12 +104,8 @@ export default class CreditCardFormScreen extends React.Component {
           <TextInput type="TextInput" name="cardCVC" placeholder="Card CVC: XXX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({cardCVC: text})} value={this.state.cardCVC} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
         </Form>
         </ScrollView>
-        <Button title='Submit Card' onPress={() => { this.submitCard() }}>Close Tab</Button>
+        <Button color='#F7CE3E' title='Submit Card' onPress={() => { this.submitCard() }}></Button>
       </View>
     )
   }
 }
-
-          // <MenuFullButton text={'Beer Menu'} onClickedItem={() => { this.renderBeerMenu() }} styles={{marginBottom: 0, backgroundColor: '#1A2930'}} key={1} />
-          // <MenuFullButton text={'Shots Menu'} onClickedItem={() => { this.renderShotsMenu() }} styles={{marginBottom: 0, marginTop: 0, backgroundColor: '#1A2930'}} key={2} />
-          // <MenuFullButton text={'Cocktails Menu'} onClickedItem={() => { this.renderCocktailsMenu() }} styles={{marginTop: 0, backgroundColor: '#1A2930'}} key={3} />

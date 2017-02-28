@@ -23,12 +23,8 @@ import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import BarLandingScreen from '../Containers/BarLandingScreen'
 import CreditCardScreen from '../Containers/CreditCardScreen'
 import CreditCardFormScreen from '../Containers/CreditCardFormScreen'
-import TableScreen from '../Containers/TableScreen'
-<<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
 import NearbyBarsScreen from '../Containers/NearbyBarsScreen'
 import GeolocationTestScreen from '../Containers/GeolocationTestScreen.js'
-=======
->>>>>>> [progress]Format barLanding
 
 import MenuBarScreen from '../Containers/MenuBarScreen'
 import MenuBeersScreen from '../Containers/MenuBeersScreen'
@@ -67,12 +63,8 @@ class NavigationRouter extends Component {
             <Scene key='barLandingScreen' component={BarLandingScreen} title='Bar Landing Screen' />
             <Scene key='creditCardScreen' component={CreditCardScreen} title='Credit Cards' />
             <Scene key='creditCardFormScreen' component={CreditCardFormScreen} title='Credit Card Form' />
-<<<<<<< 94dc9785d67ef27c4273a03ff0a37377309b5070
             <Scene key='nearbyBarsScreen' component={NearbyBarsScreen} title='Nearby Bars Screen' />
             <Scene key='geolocationTestScreen' component={GeolocationTestScreen} title='Geolocation Test Screen' />
-=======
-            <Scene key='tableScreen' component={TableScreen} title='Table Screen' />
->>>>>>> [progress]Format barLanding
           </Scene>
         </Scene>
       </Router>

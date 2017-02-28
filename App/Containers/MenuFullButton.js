@@ -25,6 +25,7 @@ class MenuFullButton extends React.Component {
     this.removeConfirmSlider = this.removeConfirmSlider.bind(this)
     this.onSlide = this.onSlide.bind(this)
     this.orderDrink = this.orderDrink.bind(this)
+    this.buyDrink = this.buyDrink.bind(this)
     this.addOrderToStore = this.addOrderToStore.bind(this)
   }
 
@@ -54,8 +55,13 @@ class MenuFullButton extends React.Component {
     })
   }
 
+  buyDrink (amount) {
+    this.props.buyDrink(amount)
+  }
+
   onSlide (order) {
     this.orderDrink(order)
+    this.buyDrink(order.price)
     this.addOrderToStore(order)
     this.removeConfirmSlider()
   }
