@@ -30,6 +30,9 @@ export default class APITestingScreen extends React.Component {
   }
 
   // add a component mount that retrieves card info, need for changing cards -- should re-render with new card info
+  componentDidMount() {
+
+  }
 
   changeTable (tableNum) {
     this.setState({table: tableNum})
@@ -48,7 +51,7 @@ export default class APITestingScreen extends React.Component {
   renderMenuBar() {
     NavigationActions.barMenu({
       customerStripe: this.state.customerStripe,
-      barStripe: this.state.barStripe
+      barStripe: this.props.barStripe
     })
     // pass down stripes, table#
   }
@@ -57,8 +60,8 @@ export default class APITestingScreen extends React.Component {
     return (
       <View style={styles.blackContainer}>
         <ScrollView style={styles.container} ref='container'>
-          <Text style={styles.barHeader}>{this.state.barName}</Text>
-          <Image source={{uri:'http://img04.deviantart.net/4281/i/2010/010/f/6/paddy__s_pub_by_detroitchicago.jpg'}} 
+          <Text style={styles.barHeader}>{this.props.name}</Text>
+          <Image source={{uri: this.props.picture}} 
           style={styles.headerImage} 
           resizeMode='stretch' />
             <View style={styles.tableInfo}>
