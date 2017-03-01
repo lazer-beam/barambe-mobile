@@ -2,7 +2,9 @@ import React from 'react'
 import { TextInput, Text, ScrollView, View, Image, Button } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
 
+import CustomerActions from '../Redux/CustomerRedux'
 import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
@@ -12,7 +14,7 @@ import styles from './Styles/BarLandingScreenStyle'
 
 const DOMAIN = MenuConfig.domain
 
-export default class BarLandingScreen extends React.Component {
+class BarLandingScreen extends React.Component {
   constructor (props: Object) {
     super(props)
 
@@ -23,17 +25,26 @@ export default class BarLandingScreen extends React.Component {
       cardLast4: '4242',
       customerStripe: 'cus_AB1NVGME7exD4z',
       barStripe: 'acct_19nbJhDCKIISg37F',
-      barName: "Paddy's Pub"
+      barName: "Paddy's Pub",
+      fetching: true
     }
 
     this.renderCardForm = this.renderCardForm.bind(this)
     this.renderMenuBar = this.renderMenuBar.bind(this)
     this.changeTable = this.changeTable.bind(this)
+    this.generateDrinksArrs = this.generateDrinksArrs.bind(this)
+    this.convertPrices = this.convertPrices.bind(this)
   }
 
   // add a component mount that retrieves card info, need for changing cards -- should re-render with new card info
   componentDidMount() {
-
+    RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
+      .then(res => {
+        this.setState({ fetching: false })
+        this.generateDrinksArrs(res.json())
+      }).catch(err => {
+        console.log('err', err)
+      })
   }
 
   changeTable (tableNum) {
@@ -55,6 +66,20 @@ export default class BarLandingScreen extends React.Component {
       table: this.state.table,
       customerStripe: this.state.customerStripe,
       barStripe: this.props.barStripe
+    })
+  }
+
+  generateDrinksArrs (json) {
+    this.props.setBeers(this.convertPrices(json.beerArr))
+    this.props.setShots(this.convertPrices(json.liquorArr))
+    this.props.setCocktails(this.convertPrices(json.cocktailArr))
+    this.props.setAddIns(this.convertPrices(json.addInArr))
+  }
+
+  convertPrices (items) {
+    return items.map(item => {
+      item.price = item.price ? (item.price / 100).toFixed(2) : null
+      return item
     })
   }
 
@@ -85,8 +110,28 @@ export default class BarLandingScreen extends React.Component {
           <Button onPress={() => { this.renderCardForm() }} color={Colors.barambeBlack} title='Change Card' />
           </View>
         </ScrollView>
-        <Button color={Colors.barambeBlack} title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
+        {this.state.fetching
+          ? <Button disabled color={"#000"} title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
+          : <Button color={Colors.barambeBlack} title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
+        }
       </View>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    displayTab: state.customer.displayTab
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setBeers: beers => dispatch(CustomerActions.setBeers(beers)),
+    setShots: shots => dispatch(CustomerActions.setShots(shots)),
+    setCocktails: cocktails => dispatch(CustomerActions.setCocktails(cocktails)),
+    setAddIns: addIns => dispatch(CustomerActions.setAddIns(addIns))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BarLandingScreen)

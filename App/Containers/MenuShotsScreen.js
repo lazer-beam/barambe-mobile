@@ -61,7 +61,8 @@ class MenuShots extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    displayTab: state.customer.displayTab
+    displayTab: state.customer.displayTab,
+    shots: state.customer.shots
   }
 }
 
