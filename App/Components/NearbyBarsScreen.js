@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 
 import BarsActions from '../Redux/BarsRedux'
 import { Metrics, Images, Colors } from '../Themes'
-import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
 
 // Styles
