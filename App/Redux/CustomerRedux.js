@@ -10,7 +10,9 @@ const { Types, Creators } = createActions({
   setBeers: ['beers'],
   setShots: ['shots'],
   setCocktails: ['cocktails'],
-  setAddIns: ['addIns']
+  setAddIns: ['addIns'],
+  setLongitude: ['longitude'],
+  setLatitude: ['latitude']
 })
 
 export const customerTypes = Types
@@ -24,7 +26,9 @@ export const INITIAL_STATE = Immutable({
   beers: [],
   shots: [],
   cocktails: [],
-  addIns: []
+  addIns: [],
+  currentLongitude: '-118.390891',
+  currentLatitude: '33.976002'
 })
 
 /* ------------- Reducers ------------- */
@@ -49,6 +53,12 @@ export const setCocktails = (state: Object, { cocktails }: Object) =>
 export const setAddIns = (state: Object, { addIns }: Object) =>
   Immutable.merge(state, { addIns: addIns })
 
+export const setLongitude = (state: Object, { longitude }: String) =>
+  Immutable.merge(state, { longitude: longitude })
+
+export const setLatitude = (state: Object, { latitude }: String) =>
+  Immutable.merge(state, { latitude: latitude })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -58,5 +68,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_BEERS]: setBeers,
   [Types.SET_SHOTS]: setShots,
   [Types.SET_COCKTAILS]: setCocktails,
-  [Types.SET_ADDINS]: setAddIns
+  [Types.SET_ADDINS]: setAddIns,
+  [Types.SET_LONGITUDE]: setLongitude,
+  [Types.SET_LATITUDE]: setLatitude,
 })

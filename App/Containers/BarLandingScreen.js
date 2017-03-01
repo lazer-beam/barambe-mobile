@@ -87,7 +87,6 @@ class BarLandingScreen extends React.Component {
     return (
       <View style={styles.barLandingContainer}>
         <ScrollView style={styles.container} ref='container'>
-          <Text style={styles.barHeader}>{this.props.name}</Text>
           <Image source={{uri: this.props.picture}} 
           style={styles.headerImage} 
           resizeMode='stretch' />
