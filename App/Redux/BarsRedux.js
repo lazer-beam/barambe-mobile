@@ -34,12 +34,19 @@ export const INITIAL_STATE = Immutable({
           location: ['33.959840', '-118.379463'],
           authId: 'leialoha',
           name: 'Lei Aloha'
+        }, {
+          subdomain: 'http://barambe.brennans.com/',
+          stripe: 'acct_19nbJhDCKIISg37F',
+          picture: 'http://images.complex.com/complex/image/upload/c_limit,w_680/fl_lossy,pg_1,q_auto/xb5aqbxcistlm5nr8exm.jpg',
+          location: ['33.988312', '-118.446091'],
+          authId: 'brennans',
+          name: 'Brennan\'s Pub'
         },{
           subdomain: 'http://barambe.joxersdalys.com/',
           stripe: 'acct_19nbJhDCKIISg37F',
           picture: 'https://s3-us-west-1.amazonaws.com/media.citycheers.com/u/1407518378-JoxersSlider.png',
-          location: ['33.988312', '-118.446091'],
-          authId: 'brennans',
+          location: ['34.007789', '-118.412340'],
+          authId: 'joxersdalys',
           name: 'Joxer\'s Daly\'s'
         }]
 })
