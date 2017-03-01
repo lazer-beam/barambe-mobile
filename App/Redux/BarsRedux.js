@@ -34,6 +34,13 @@ export const INITIAL_STATE = Immutable({
           location: ['33.959840', '-118.379463'],
           authId: 'leialoha',
           name: 'Lei Aloha'
+        },{
+          subdomain: 'http://barambe.joxersdalys.com/',
+          stripe: 'acct_19nbJhDCKIISg37F',
+          picture: 'https://s3-us-west-1.amazonaws.com/media.citycheers.com/u/1407518378-JoxersSlider.png',
+          location: ['33.988312', '-118.446091'],
+          authId: 'brennans',
+          name: 'Joxer\'s Daly\'s'
         }]
 })
 
