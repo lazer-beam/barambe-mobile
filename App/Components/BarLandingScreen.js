@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 
 import CustomerActions from '../Redux/CustomerRedux'
 import { Metrics, Images, Colors } from '../Themes'
-import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
 
 // Styles

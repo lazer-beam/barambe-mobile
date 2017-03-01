@@ -5,7 +5,6 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import Form from 'react-native-form'
 
 import { Metrics, Images, Colors } from '../Themes'
-import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
 
 import styles from './Styles/MenuBarScreenStyle'

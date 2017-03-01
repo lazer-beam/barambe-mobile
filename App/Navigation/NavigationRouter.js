@@ -5,14 +5,14 @@ import { View } from 'react-native'
 import { Scene, Router, Actions } from 'react-native-router-flux'
 
 import Styles from './Styles/NavigationContainerStyle'
-import BarLandingScreen from '../Containers/BarLandingScreen'
-import CreditCardFormScreen from '../Containers/CreditCardFormScreen'
-import NearbyBarsScreen from '../Containers/NearbyBarsScreen'
+import BarLandingScreen from '../Components/BarLandingScreen'
+import CreditCardFormScreen from '../Components/CreditCardFormScreen'
+import NearbyBarsScreen from '../Components/NearbyBarsScreen'
 
-import MenuBarScreen from '../Containers/MenuBarScreen'
-import MenuBeersScreen from '../Containers/MenuBeersScreen'
-import MenuShotsScreen from '../Containers/MenuShotsScreen'
-import MenuCocktailsScreen from '../Containers/MenuCocktailsScreen'
+import MenuBarScreen from '../Components/MenuBarScreen'
+import MenuBeersScreen from '../Components/MenuBeersScreen'
+import MenuShotsScreen from '../Components/MenuShotsScreen'
+import MenuCocktailsScreen from '../Components/MenuCocktailsScreen'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
