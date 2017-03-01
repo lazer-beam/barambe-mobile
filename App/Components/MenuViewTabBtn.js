@@ -20,14 +20,14 @@ class ViewTabBtn extends React.Component {
     return (
       this.props.displayTab
       ? <Button
-        title='Close Tab'
-        onPress={this.closeTab}
-        color={Colors.barambeBlue}
+          title='Close Tab'
+          onPress={this.closeTab}
+          color={Colors.barambeBlue}
         />
       : <Button
-        color={Colors.barambeBlue}
-        title='View Tab'
-        onPress={this.props.renderTabHistory}
+          color={Colors.barambeBlue}
+          title='View Tab'
+          onPress={this.props.renderTabHistory}
         />
     )
   }
