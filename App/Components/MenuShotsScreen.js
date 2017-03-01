@@ -37,7 +37,7 @@ class MenuShots extends React.Component {
   render () {
     return (
       <View style={styles.blackContainer}>
-        <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
+        <Image source={{uri: this.props.currBar}} style={styles.menuHeaderImage} resizeMode='stretch' />
         <ScrollView style={styles.container} ref='container'>
           {this.props.displayTab
           ? <MenuViewTabScreen />
@@ -62,7 +62,8 @@ class MenuShots extends React.Component {
 const mapStateToProps = state => {
   return {
     displayTab: state.customer.displayTab,
-    shots: state.customer.shots
+    shots: state.customer.shots,
+    currBar: state.bars.currBar
   }
 }
 
