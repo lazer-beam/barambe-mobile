@@ -43,13 +43,13 @@ class MenuBeers extends React.Component {
           {this.props.displayTab
           ? <MenuViewTabScreen />
           : this.props.beers.map(beer => <MenuFullButton
-            buyDrink={this.props.buyDrink}
-            onClickedItem={this.displayBeerModal}
-            item={beer}
-            price={beer.price}
-            text={beer.name}
-            key={beer.name}
-            styles={{marginTop: 0, marginBottom: 0, backgroundColor: Colors.barambeBlack}}
+              buyDrink={this.props.buyDrink}
+              onClickedItem={this.displayBeerModal}
+              item={beer}
+              price={beer.price}
+              text={beer.name}
+              key={beer.name}
+              styles={{marginTop: 0, marginBottom: 0, backgroundColor: Colors.barambeBlack}}
             />)
           }
         </ScrollView>
@@ -62,7 +62,8 @@ class MenuBeers extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    displayTab: state.customer.displayTab
+    displayTab: state.customer.displayTab,
+    beers: state.customer.beers
   }
 }
 

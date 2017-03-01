@@ -5347,6 +5347,10 @@ react-native-fetch-blob@^0.10.2:
     base-64 "0.1.0"
     glob "^7.0.6"
 
+react-native-form@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-form/-/react-native-form-2.1.2.tgz#f962cfff0f1a6f4192daf48c649954c9b796def4"
+
 react-native-i18n@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-0.1.1.tgz#7fdc7512e71c9f5057d5f9ee8d559fc4801a1c14"

@@ -34,34 +34,8 @@ class MenuBarScreen extends React.Component {
     this.renderBeerMenu = this.renderBeerMenu.bind(this)
     this.renderShotsMenu = this.renderShotsMenu.bind(this)
     this.renderCocktailsMenu = this.renderCocktailsMenu.bind(this)
-    this.convertPrices = this.convertPrices.bind(this)
     this.renderTabHistory = this.renderTabHistory.bind(this)
     this.sendPay = this.sendPay.bind(this)
-  }
-
-  componentDidMount () {
-    RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
-      .then(res => {
-        this.generateDrinksArrs(res.json())
-      }).catch(err => {
-        console.log('err', err)
-      })
-  }
-
-  generateDrinksArrs (json) {
-    this.setState({
-      beers: this.convertPrices(json.beerArr),
-      shots: this.convertPrices(json.liquorArr),
-      cocktails: this.convertPrices(json.cocktailArr),
-      addIns: this.convertPrices(json.addInArr)
-    })
-  }
-
-  convertPrices (items) {
-    return items.map(item => {
-      item.price = item.price ? (item.price / 100).toFixed(2) : null
-      return item
-    })
   }
 
   sendPay (amount) {
@@ -84,23 +58,20 @@ class MenuBarScreen extends React.Component {
     }).then(json => {
       console.log(json)
     }).catch(err => {
-      console.log(err.json())
+      console.log('err', err)
     })
   }
 
   renderBeerMenu () {
-    NavigationActions.beersMenu({ beers: this.state.beers, buyDrink: this.sendPay, table: this.props.table })
+    NavigationActions.beersMenu({ buyDrink: this.sendPay, table: this.props.table })
   }
 
   renderShotsMenu () {
-    NavigationActions.shotsMenu({ shots: this.state.shots, buyDrink: this.sendPay, table: this.props.table })
+    NavigationActions.shotsMenu({ buyDrink: this.sendPay, table: this.props.table })
   }
 
   renderCocktailsMenu () {
     NavigationActions.cocktailsMenu({
-      cocktails: this.state.cocktails,
-      liquors: this.state.shots,
-      addIns: this.state.addIns,
       buyDrink: this.sendPay,
       table: this.props.table
     })
