@@ -21,7 +21,38 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  paidOrders: [],
+  //filled for testing purposes only
+  paidOrders: [{
+    name: 'Joan Collins',
+    price: '7.00'
+  }, {
+    name: 'Miller Lite',
+    price: '10.50'
+  }, {
+    name: 'Captain Morgan',
+    price: '8.50'
+  },{
+    name: 'Hennesy',
+    price: '12.00'
+  }, {
+    name: 'Sierra Nevada',
+    price: '10.00'
+  }, {
+    name: 'Dry Manhattan',
+    price: '12.00'
+  }, {
+    name: 'Coors Light',
+    price: '9.50'
+  }, {
+    name: 'Goldchild',
+    price: '6.50'
+  }, {
+    name: 'Pabst Blue Ribbon',
+    price: '5.50'
+  }, {
+    name: 'Adios Motherfucker',
+    price: '11.50'
+  }],
   displayTab: false,
   beers: [],
   shots: [],
