@@ -41,5 +41,13 @@ export default StyleSheet.create({
     flex: 1, 
     flexDirection: 'row',
     justifyContent: 'space-between'
-  }
+  },
+  headerImage: {
+    position: 'relative',
+    top: 10,
+    left: 0,
+    bottom: 10,
+    right: 0,
+    height: 150,
+  },
 })
