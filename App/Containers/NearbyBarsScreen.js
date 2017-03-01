@@ -5,7 +5,9 @@ import { ScrollView, View, Image, Text } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Entypo from 'react-native-vector-icons/Entypo'
+import { connect } from 'react-redux'
 
+import CustomerActions from '../Redux/CustomerRedux'
 import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
@@ -18,6 +20,7 @@ const DOMAIN = MenuConfig.domain
 export default class NearbyBarScreen extends React.Component {
   constructor (props: Object) {
     super(props)
+
     this.state = {
       bars: [{
         subdomain: 'http://barambe.paddyspub.com/',
@@ -44,8 +47,25 @@ export default class NearbyBarScreen extends React.Component {
       currentLongitude: '-118.390891',
       currentLatitude: '33.976002'
     }
+    
     this.renderBarLanding = this.renderBarLanding.bind(this)
     this.calcDistance = this.calcDistance.bind(this)
+  }
+
+  componentDidMount() {
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     let currentLocation = position;
+    //     console.log(`Current location: ${JSON.stringify(currentLocation)}`)
+    //     this.setState({
+    //       currentLongitude: currentLocation.coords.longitude,
+    //       currentLatitude: currentLocation.coords.latitude
+    //     });
+    //   },
+    //   (error) => alert(JSON.stringify(error)),
+    //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    //   // asynchronously get current position, send request to retrieve nearby bars, which populates this.state.bars
+    // );
   }
 
   renderBarLanding(barObj) {
@@ -69,23 +89,8 @@ export default class NearbyBarScreen extends React.Component {
     dist = Math.acos(dist)
     dist = dist * 180/Math.PI
     dist = dist * 60 * 1.1515
-    return dist.toFixed(2)
-  }
 
-  componentDidMount() {
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     let currentLocation = position;
-    //     console.log(`Current location: ${JSON.stringify(currentLocation)}`)
-    //     this.setState({
-    //       currentLongitude: currentLocation.coords.longitude,
-    //       currentLatitude: currentLocation.coords.latitude
-    //     });
-    //   },
-    //   (error) => alert(JSON.stringify(error)),
-    //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    //   // asynchronously get current position, send request to retrieve nearby bars, which populates this.state.bars
-    // );
+    return dist.toFixed(2)
   }
 
   render () {
@@ -96,11 +101,13 @@ export default class NearbyBarScreen extends React.Component {
         <ScrollView style={styles.container} ref='container'>
           {this.state.bars.map((barObj, idx) => {
             return <View key={idx} style={styles.listedBar}>
-              <Text style={{color: '#F7CE3E', fontSize: 20}} 
-                onPress={() => this.renderBarLanding(barObj)}>
+              <Text
+                style={{color: Colors.barambeYellow, fontSize: 20}}
+                onPress={() => this.renderBarLanding(barObj)}
+              >
                 {barObj.name}
               </Text>
-              <Text style={{color: '#F7CE3E'}}>
+              <Text style={{color: Colors.barambeYellow}}>
                 {this.calcDistance(barObj.location)} mi
               </Text>
             </View>

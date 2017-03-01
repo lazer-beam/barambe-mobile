@@ -21,7 +21,6 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// request the temperature for a city
 export const addOrder = (state: Object, { order }: Object) =>
   Immutable.merge(state, { paidOrders: state.paidOrders.concat(order) })
 

@@ -38,5 +38,10 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color:'#C5C1C0'
+  },
+  changeCardBtn: {
+    height: 40,
+    width: 115,
+    marginTop: 5
   }
 })
