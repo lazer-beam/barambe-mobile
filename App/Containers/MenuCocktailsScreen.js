@@ -60,7 +60,8 @@ class MenuCocktail extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    displayTab: state.customer.displayTab
+    displayTab: state.customer.displayTab,
+    cocktails: state.customer.cocktails
   }
 }
 
