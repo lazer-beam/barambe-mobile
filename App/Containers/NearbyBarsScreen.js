@@ -7,7 +7,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { connect } from 'react-redux'
 
-import CustomerActions from '../Redux/CustomerRedux'
+import BarsActions from '../Redux/BarsRedux'
 import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
@@ -17,36 +17,9 @@ import styles from './Styles/NearbyBarsScreenStyle'
 
 const DOMAIN = MenuConfig.domain
 
-export default class NearbyBarScreen extends React.Component {
+class NearbyBarScreen extends React.Component {
   constructor (props: Object) {
     super(props)
-
-    this.state = {
-      bars: [{
-        subdomain: 'http://barambe.paddyspub.com/',
-        stripe: 'acct_19nbJhDCKIISg37F',
-        picture: 'http://img04.deviantart.net/4281/i/2010/010/f/6/paddy__s_pub_by_detroitchicago.jpg',
-        location: ['33.978035', '-118.391949'],//lat longitude
-        authId: 'paddyspub',
-        name: "Paddy's Pub"
-      },{
-        subdomain: 'http://barambe.accomplicebar.com/',
-        stripe: 'acct_19nbJhDCKIISg37F',
-        picture: 'https://cdn0.vox-cdn.com/uploads/chorus_image/image/51853251/2016-07-11-statuskuo-003.0.0.jpeg',
-        location: ['34.004392', '-118.431099'],
-        authId: 'accomplice',
-        name: 'Accomplice Bar'
-      },{
-        subdomain: 'http://barambe.leialoha.com/',
-        stripe: 'acct_19nbJhDCKIISg37F',
-        picture: 'https://assets3.thrillist.com/v1/image/1407261/size/tmg-article_default_mobile.jpg',
-        location: ['33.959840', '-118.379463'],
-        authId: 'leialoha',
-        name: 'Lei Aloha'
-      }],
-      currentLongitude: '-118.390891',
-      currentLatitude: '33.976002'
-    }
     
     this.renderBarLanding = this.renderBarLanding.bind(this)
     this.calcDistance = this.calcDistance.bind(this)
@@ -81,9 +54,9 @@ export default class NearbyBarScreen extends React.Component {
     let barLat = barPos[0]
     let barLong = barPos[1]
 
-    var radlat1 = Math.PI * this.state.currentLatitude/180
+    var radlat1 = Math.PI * this.props.currentLatitude/180
     var radlat2 = Math.PI * barLat/180
-    var theta = this.state.currentLongitude-barLong
+    var theta = this.props.currentLongitude-barLong
     var radtheta = Math.PI * theta/180
     var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
     dist = Math.acos(dist)
@@ -99,7 +72,7 @@ export default class NearbyBarScreen extends React.Component {
         <Text style={styles.barHeader}>NEARBY BARS</Text>
         <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
         <ScrollView style={styles.container} ref='container'>
-          {this.state.bars.map((barObj, idx) => {
+          {this.props.bars.map((barObj, idx) => {
             return <View key={idx} style={styles.listedBar}>
               <Text
                 style={{color: Colors.barambeYellow, fontSize: 20}}
@@ -117,3 +90,13 @@ export default class NearbyBarScreen extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    bars: state.bars.bars,
+    currentLongitude: state.customer.currentLongitude,
+    currentLatitude: state.customer.currentLatitude
+  }
+}
+
+export default connect(mapStateToProps)(NearbyBarScreen)
