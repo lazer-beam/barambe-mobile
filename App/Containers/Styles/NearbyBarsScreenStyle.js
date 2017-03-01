@@ -50,4 +50,27 @@ export default StyleSheet.create({
     right: 0,
     height: 150,
   },
+  textOnImageLeft: {
+    textShadowOffset: {width: 2, height: 2},
+    textShadowColor: 'black',
+    color: Colors.barambeYellow,
+    fontWeight: '600',
+    paddingRight: 30
+  },
+  textOnImageRight: {
+    textShadowOffset: {width: 2, height: 2},
+    textShadowColor: 'black',
+    color: Colors.barambeYellow,
+    fontWeight: '600',
+  },
+  bulletPoint: {
+    textAlign: 'center',
+    paddingRight: 30
+  },
+  individualNearbyBarContainer: {
+    borderColor: Colors.barambeGrey,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    paddingTop: -10
+  }
 })

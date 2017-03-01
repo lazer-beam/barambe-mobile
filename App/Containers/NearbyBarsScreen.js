@@ -100,12 +100,12 @@ class NearbyBarScreen extends React.Component {
         <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
         <ScrollView style={styles.container} ref='container'>
           {this.state.bars.map((barObj, idx) => {
-            return <View key={idx} style={{ borderColor: Colors.barambeGrey,  borderTopWidth: 2, borderBottomWidth: 2, paddingTop: -10}}>
+            return <View key={idx} style={styles.individualNearbyBarContainer}>
                     <Image style={styles.headerImage} source={{uri: barObj.picture}} resizeMode='stretch'>
                       <View style={props.style.textInImage}>
-                        <Text style={{textShadowOffset: {width: 2, height: 2}, textShadowColor: 'black', color: Colors.barambeYellow, paddingRight: 30 }}> {barObj.name} </Text>
-                        <Entypo name="dot-single" style={{textAlign: 'center', paddingRight: 30 }} size={Metrics.icons.tiny} color={Colors.barambeYellow} />
-                        <Text style={{ textShadowOffset: {width: 2, height: 2}, textShadowColor: 'black', color: Colors.barambeYellow, fontWeight: '600'}}> Miles Away: {this.calcDistance(barObj.location)} </Text>
+                        <Text style={styles.textOnImageLeft}> {barObj.name} </Text>
+                        <Entypo name="dot-single" style={styles.bulletPoint} size={Metrics.icons.tiny} color={Colors.barambeYellow} />
+                        <Text style={styles.textOnImageRight}> Miles Away: {this.calcDistance(barObj.location)} </Text>
                       </View>
                     </Image>
                   </View>
