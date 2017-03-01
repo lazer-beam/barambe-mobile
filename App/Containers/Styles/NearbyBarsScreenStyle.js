@@ -48,7 +48,7 @@ export default StyleSheet.create({
     left: 0,
     bottom: 10,
     right: 0,
-    height: 150,
+    height: 150
   },
   textOnImageLeft: {
     textShadowOffset: {width: 2, height: 2},
