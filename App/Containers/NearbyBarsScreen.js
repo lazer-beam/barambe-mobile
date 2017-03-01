@@ -20,12 +20,20 @@ const DOMAIN = MenuConfig.domain
 class NearbyBarScreen extends React.Component {
   constructor (props: Object) {
     super(props)
+
+    this.state = {
+      bars: []
+    }
     
     this.renderBarLanding = this.renderBarLanding.bind(this)
     this.calcDistance = this.calcDistance.bind(this)
+    this.filterBarsByDistance = this.filterBarsByDistance.bind(this)
   }
 
   componentDidMount() {
+    this.setState({
+      bars: this.filterBarsByDistance(this.props.bars)
+    })
     // navigator.geolocation.getCurrentPosition(
     //   (position) => {
     //     let currentLocation = position;
@@ -66,13 +74,17 @@ class NearbyBarScreen extends React.Component {
     return dist.toFixed(2)
   }
 
+  filterBarsByDistance (bars) {
+    return [].concat(bars).sort((barA, barB) => this.calcDistance(barA.location) > this.calcDistance(barB.location))
+  }
+
   render () {
     return (
       <View style={styles.nearbyBarsContainer}>
         <Text style={styles.barHeader}>NEARBY BARS</Text>
         <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
         <ScrollView style={styles.container} ref='container'>
-          {this.props.bars.map((barObj, idx) => {
+          {this.state.bars.map((barObj, idx) => {
             return <View key={idx} style={styles.listedBar}>
               <Text
                 style={{color: Colors.barambeYellow, fontSize: 20}}
