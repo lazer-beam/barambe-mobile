@@ -87,26 +87,28 @@ class BarLandingScreen extends React.Component {
     return (
       <View style={styles.barLandingContainer}>
         <ScrollView style={styles.container} ref='container'>
-          <Image source={{uri: this.props.picture}} 
-          style={styles.headerImage} 
-          resizeMode='stretch' />
-            <View style={styles.tableInfo}>
-              <Text style={{color:'#C5C1C0', fontSize: 17}}>TABLE NUMBER (optional):</Text>
-            </View>
-            <TextInput type="TextInput" 
-              name="tableNumber" 
-              placeholder="Enter Table Number" 
-              placeholderTextColor="#F7CE3E"
-              underlineColorAndroid="#C5C1C0"
-              onChangeText={(text) => this.setState({table: text})}
-              value={this.state.table}
-              style={{ color:'#F7CE3E' }} />
+          <Image source={{uri: this.props.picture}}
+            style={styles.headerImage}
+            resizeMode='stretch'
+          />
+          <View style={styles.tableInfo}>
+            <Text style={{color:'#C5C1C0', fontSize: 17}}>TABLE NUMBER (optional):</Text>
+          </View>
+          <TextInput type="TextInput"
+            name="tableNumber"
+            placeholder="Enter Table Number"
+            placeholderTextColor="#F7CE3E"
+            underlineColorAndroid="#C5C1C0"
+            onChangeText={(text) => this.setState({table: text})}
+            value={this.state.table}
+            style={{ color:'#F7CE3E' }}
+          />
           <View style={styles.currentCard}>
             <Text style={{color:'#C5C1C0', fontSize: 17}}>ACTIVE CARD:</Text>
             <Text style={{color:'#C5C1C0', fontSize: 15}}>{this.state.cardBrand} {this.state.cardLast4}</Text>
           </View>
           <View style={styles.changeCardBtn}>
-          <Button onPress={() => { this.renderCardForm() }} color={Colors.barambeBlack} title='Change Card' />
+            <Button onPress={() => { this.renderCardForm() }} color={Colors.barambeBlack} title='Change Card' />
           </View>
         </ScrollView>
         {this.state.fetching

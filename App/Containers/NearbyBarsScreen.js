@@ -85,7 +85,10 @@ class NearbyBarScreen extends React.Component {
         <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
         <ScrollView style={styles.container} ref='container'>
           {this.state.bars.map((barObj, idx) => {
-            return <View key={idx} style={styles.listedBar}>
+            return <View key={idx} style={{ borderColor: Colors.barambeGrey,  borderTopWidth: 2, borderBottomWidth: 2, paddingTop: -10}}>
+                    <Image style={styles.headerImage} source={{uri: barObj.picture}} resizeMode='stretch' />
+                  </View>
+            {/*return <View key={idx} style={styles.listedBar}>
               <Text
                 style={{color: Colors.barambeYellow, fontSize: 20}}
                 onPress={() => this.renderBarLanding(barObj)}
@@ -95,7 +98,7 @@ class NearbyBarScreen extends React.Component {
               <Text style={{color: Colors.barambeYellow}}>
                 {this.calcDistance(barObj.location)} mi
               </Text>
-            </View>
+            </View>*/}
           })}
         </ScrollView>
       </View>
