@@ -103,9 +103,9 @@ class NearbyBarScreen extends React.Component {
             return <View key={idx} style={{ borderColor: Colors.barambeGrey,  borderTopWidth: 2, borderBottomWidth: 2, paddingTop: -10}}>
                     <Image style={styles.headerImage} source={{uri: barObj.picture}} resizeMode='stretch'>
                       <View style={props.style.textInImage}>
-                        <Text style={{color: Colors.barambeBlue, paddingRight: 30, fontWeight: '600'}}> {barObj.name} </Text>
-                        <Entypo name="dot-single" style={{textAlign: 'center', paddingRight: 30}} size={Metrics.icons.tiny} color={Colors.barambeBlue} />
-                        <Text style={{color: Colors.barambeBlue, fontWeight: '600'}}> Miles Away: {this.calcDistance(barObj.location)} </Text>
+                        <Text style={{textShadowOffset: {width: 2, height: 2}, textShadowColor: 'black', color: Colors.barambeYellow, paddingRight: 30 }}> {barObj.name} </Text>
+                        <Entypo name="dot-single" style={{textAlign: 'center', paddingRight: 30 }} size={Metrics.icons.tiny} color={Colors.barambeYellow} />
+                        <Text style={{ textShadowOffset: {width: 2, height: 2}, textShadowColor: 'black', color: Colors.barambeYellow, fontWeight: '600'}}> Miles Away: {this.calcDistance(barObj.location)} </Text>
                       </View>
                     </Image>
                   </View>
