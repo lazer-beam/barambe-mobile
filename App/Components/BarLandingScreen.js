@@ -86,7 +86,7 @@ class BarLandingScreen extends React.Component {
     return (
       <View style={styles.barLandingContainer}>
         <ScrollView style={styles.container} ref='container'>
-          <Image source={{uri: this.props.picture}}
+          <Image source={{uri: this.props.currBar}}
             style={styles.headerImage}
             resizeMode='stretch'
           />
@@ -112,8 +112,7 @@ class BarLandingScreen extends React.Component {
         </ScrollView>
         {this.state.fetching
           ? <Button disabled color={"#000"} title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
-          : <Button color={Colors.barambeBlack} title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>
-        }
+          : <Button color={Colors.barambeBlack} title='Open Tab' onPress={() => { this.renderMenuBar() }}></Button>}
       </View>
     )
   }
@@ -121,7 +120,8 @@ class BarLandingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    displayTab: state.customer.displayTab
+    displayTab: state.customer.displayTab,
+    currBar: state.bars.currBar
   }
 }
 

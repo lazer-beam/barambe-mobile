@@ -37,7 +37,7 @@ class MenuCocktail extends React.Component {
   render () {
     return (
       <View style={styles.blackContainer}>
-        <Image source={Images.barMockHeader} style={styles.menuHeaderImage} resizeMode='stretch' />
+        <Image source={{uri: this.props.currBar}} style={styles.menuHeaderImage} resizeMode='stretch' />
         <ScrollView style={styles.container} ref='container'>
           {this.props.displayTab
           ? <MenuViewTabScreen />
@@ -61,7 +61,8 @@ class MenuCocktail extends React.Component {
 const mapStateToProps = state => {
   return {
     displayTab: state.customer.displayTab,
-    cocktails: state.customer.cocktails
+    cocktails: state.customer.cocktails,
+    currBar: state.bars.currBar
   }
 }
 

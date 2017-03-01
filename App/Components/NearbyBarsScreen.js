@@ -27,6 +27,7 @@ class NearbyBarScreen extends React.Component {
     this.renderBarLanding = this.renderBarLanding.bind(this)
     this.calcDistance = this.calcDistance.bind(this)
     this.filterBarsByDistance = this.filterBarsByDistance.bind(this)
+    this.setCurrentBar = this.setCurrentBar.bind(this)
   }
 
   componentDidMount() {
@@ -51,6 +52,7 @@ class NearbyBarScreen extends React.Component {
   }
 
   renderBarLanding(barObj) {
+    this.setCurrentBar(barObj.picture)
     NavigationActions.barLandingScreen({
       barStripe: barObj.stripe,
       name: barObj.name,
@@ -77,6 +79,10 @@ class NearbyBarScreen extends React.Component {
 
   filterBarsByDistance (bars) {
     return [].concat(bars).sort((barA, barB) => this.calcDistance(barA.location) > this.calcDistance(barB.location))
+  }
+
+  setCurrentBar (bar) {
+    this.props.setCurrBar(bar)
   }
 
   render () {
@@ -125,4 +131,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(NearbyBarScreen)
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrBar: currBar => dispatch(BarsActions.setCurrBar(currBar))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NearbyBarScreen)
