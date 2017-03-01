@@ -39,6 +39,10 @@ class ViewTabScreen extends React.Component {
   }
 
   changeTip (inputTip) {
+    if (isNaN(parseFloat(inputTip))) {
+      return
+    }
+
     inputTip = inputTip === '' ? '0' : inputTip
     this.setState({
       tip: inputTip,
