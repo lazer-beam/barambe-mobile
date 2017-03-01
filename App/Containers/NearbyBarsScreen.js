@@ -79,6 +79,21 @@ class NearbyBarScreen extends React.Component {
   }
 
   render () {
+    const props = {
+      style: {
+        textInImage: {
+          position: 'absolute',
+          marginLeft: Metrics.screenWidth / 6,
+          flex: 1,
+          height: 30,
+          width: Metrics.screenWidth / 1.5,
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          marginTop: 100
+        }
+      }
+    }
     return (
       <View style={styles.nearbyBarsContainer}>
         <Text style={styles.barHeader}>NEARBY BARS</Text>
@@ -86,7 +101,13 @@ class NearbyBarScreen extends React.Component {
         <ScrollView style={styles.container} ref='container'>
           {this.state.bars.map((barObj, idx) => {
             return <View key={idx} style={{ borderColor: Colors.barambeGrey,  borderTopWidth: 2, borderBottomWidth: 2, paddingTop: -10}}>
-                    <Image style={styles.headerImage} source={{uri: barObj.picture}} resizeMode='stretch' />
+                    <Image style={styles.headerImage} source={{uri: barObj.picture}} resizeMode='stretch'>
+                      <View style={props.style.textInImage}>
+                        <Text style={{color: Colors.barambeBlue, paddingRight: 30, fontWeight: '600'}}> {barObj.name} </Text>
+                        <Entypo name="dot-single" style={{textAlign: 'center', paddingRight: 30}} size={Metrics.icons.tiny} color={Colors.barambeBlue} />
+                        <Text style={{color: Colors.barambeBlue, fontWeight: '600'}}> Miles Away: {this.calcDistance(barObj.location)} </Text>
+                      </View>
+                    </Image>
                   </View>
             {/*return <View key={idx} style={styles.listedBar}>
               <Text
@@ -96,7 +117,7 @@ class NearbyBarScreen extends React.Component {
                 {barObj.name}
               </Text>
               <Text style={{color: Colors.barambeYellow}}>
-                {this.calcDistance(barObj.location)} mi
+                {this.calcDistance(barObj.location)}
               </Text>
             </View>*/}
           })}
