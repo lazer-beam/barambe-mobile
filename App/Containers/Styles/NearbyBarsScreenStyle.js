@@ -41,5 +41,36 @@ export default StyleSheet.create({
     flex: 1, 
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  headerImage: {
+    position: 'relative',
+    top: 10,
+    left: 0,
+    bottom: 10,
+    right: 0,
+    height: 150,
+  },
+  textOnImageLeft: {
+    textShadowOffset: {width: 2, height: 2},
+    textShadowColor: 'black',
+    color: Colors.barambeYellow,
+    fontWeight: '600',
+    paddingRight: 30
+  },
+  textOnImageRight: {
+    textShadowOffset: {width: 2, height: 2},
+    textShadowColor: 'black',
+    color: Colors.barambeYellow,
+    fontWeight: '600',
+  },
+  bulletPoint: {
+    textAlign: 'center',
+    paddingRight: 30
+  },
+  individualNearbyBarContainer: {
+    borderColor: Colors.barambeGrey,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    paddingTop: -10
   }
 })

@@ -4,7 +4,7 @@ import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Form from 'react-native-form'
 
-import { Metrics, Images } from '../Themes'
+import { Metrics, Images, Colors } from '../Themes'
 import MenuFullButton from '../Components/MenuFullButton'
 import MenuConfig from '../Config/MenuConfig'
 
@@ -94,9 +94,22 @@ export default class CreditCardFormScreen extends React.Component {
   }
 
   render () {
+    const props = {
+      styles: {
+        cntr: {
+          flex: 1,
+          marginTop: Metrics.BarMenuTopMargin,
+          backgroundColor: Colors.barambeBlue,
+        },
+        innerCntr: {
+          flex: 1,
+          paddingTop: Math.floor(Metrics.screenHeight / 5)
+        },
+      }
+    }
     return (
-      <View style={styles.blackContainer}>
-        <ScrollView style={styles.container} ref='container'>
+      <View style={props.styles.cntr}>
+        <ScrollView style={props.styles.innerCntr} ref='container'>
         <Form ref="form">
           <TextInput type="TextInput" name="ccNumber" placeholder="Credit Card Number" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({ccNumber: text})} value={this.state.ccNumber} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />               
           <TextInput type="TextInput" name="expMonth" placeholder="Exp. Month: XX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({expMonth: text})} value={this.state.expMonth} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
@@ -104,7 +117,7 @@ export default class CreditCardFormScreen extends React.Component {
           <TextInput type="TextInput" name="cardCVC" placeholder="Card CVC: XXX" placeholderTextColor="#F7CE3E" onChangeText={(text) => this.setState({cardCVC: text})} value={this.state.cardCVC} style={{backgroundColor:'#1A2930', color:'#F7CE3E'}} />
         </Form>
         </ScrollView>
-        <Button color='#F7CE3E' title='Submit Card' onPress={() => { this.submitCard() }}></Button>
+        <Button color={Colors.barambeBlack} title='Submit Card' onPress={() => { this.submitCard() }}></Button>
       </View>
     )
   }
