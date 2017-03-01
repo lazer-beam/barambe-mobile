@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { ScrollView, View, Image, Text } from 'react-native'
+import { ScrollView, View, Image, Text, TouchableOpacity } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -34,6 +34,8 @@ class NearbyBarScreen extends React.Component {
     this.setState({
       bars: this.filterBarsByDistance(this.props.bars)
     })
+
+    // Do this when we can confirm during deployment!!!
     // navigator.geolocation.getCurrentPosition(
     //   (position) => {
     //     let currentLocation = position;
@@ -100,7 +102,7 @@ class NearbyBarScreen extends React.Component {
         <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
         <ScrollView style={styles.container} ref='container'>
           {this.state.bars.map((barObj, idx) => {
-            return <View key={idx} style={styles.individualNearbyBarContainer}>
+            return <TouchableOpacity key={idx} style={styles.individualNearbyBarContainer} onPress={() => this.renderBarLanding(barObj)} >
                     <Image style={styles.headerImage} source={{uri: barObj.picture}} resizeMode='stretch'>
                       <View style={props.style.textInImage}>
                         <Text style={styles.textOnImageLeft}> {barObj.name} </Text>
@@ -108,18 +110,7 @@ class NearbyBarScreen extends React.Component {
                         <Text style={styles.textOnImageRight}> Miles Away: {this.calcDistance(barObj.location)} </Text>
                       </View>
                     </Image>
-                  </View>
-            {/*return <View key={idx} style={styles.listedBar}>
-              <Text
-                style={{color: Colors.barambeYellow, fontSize: 20}}
-                onPress={() => this.renderBarLanding(barObj)}
-              >
-                {barObj.name}
-              </Text>
-              <Text style={{color: Colors.barambeYellow}}>
-                {this.calcDistance(barObj.location)}
-              </Text>
-            </View>*/}
+                  </TouchableOpacity>
           })}
         </ScrollView>
       </View>
