@@ -5,14 +5,16 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   addOrder: ['order'],
-  closeTab: [],
+  closeTab: null,
   renderTabView: ['display'],
   setBeers: ['beers'],
   setShots: ['shots'],
   setCocktails: ['cocktails'],
   setAddIns: ['addIns'],
   setLongitude: ['longitude'],
-  setLatitude: ['latitude']
+  setLatitude: ['latitude'],
+  setCustomerName: ['name'],
+  setTabId: ['tab']
 })
 
 export const customerTypes = Types
@@ -28,7 +30,9 @@ export const INITIAL_STATE = Immutable({
   cocktails: [],
   addIns: [],
   currentLongitude: '-118.390891',
-  currentLatitude: '33.976002'
+  currentLatitude: '33.976002',
+  customerName: '',
+  tabId: null
 })
 
 /* ------------- Reducers ------------- */
@@ -59,6 +63,12 @@ export const setLongitude = (state: Object, { longitude }: String) =>
 export const setLatitude = (state: Object, { latitude }: String) =>
   Immutable.merge(state, { latitude: latitude })
 
+export const setCustomerName = (state: Object, { name }) =>
+  Immutable.merge(state, { customerName: name })
+
+export const setTabId = (state: Object, { tabId }) =>
+  Immutable.merge(state, { tabId: tabId })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -71,4 +81,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_ADDINS]: setAddIns,
   [Types.SET_LONGITUDE]: setLongitude,
   [Types.SET_LATITUDE]: setLatitude,
+  [Types.SET_NAME]: setCustomerName,
+  [Types.SET_TABID]: setTabId
 })

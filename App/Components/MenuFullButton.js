@@ -12,7 +12,6 @@ import { Colors, Metrics } from '../Themes'
 import MenuConfig from '../Config/MenuConfig'
 
 const DOMAIN = MenuConfig.domain
-const TEMP_TAB_ID = '2'
 
 class MenuFullButton extends React.Component {
   constructor (props) {
@@ -48,7 +47,7 @@ class MenuFullButton extends React.Component {
       method: 'POST',
       body: JSON.stringify({
         drinkName: order.name,
-        tabId: TEMP_TAB_ID
+        tabId: this.props.tabId
       })
     }).catch(err => {
       console.log('err', err)
@@ -105,7 +104,8 @@ class MenuFullButton extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    paidOrders: state.customer.paidOrders
+    paidOrders: state.customer.paidOrders,
+    tabId: state.customer.tabId
   }
 }
 

@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 import Styles from './Styles/LoginScreenStyle'
 import {Images, Metrics, Colors} from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
+import CustomerActions from '../Redux/CustomerRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Config from 'react-native-config'
 
@@ -45,6 +46,7 @@ class LoginContainer extends React.Component {
       if (err) {
         return
       }
+      this.props.setName(profile.name)
       Reactotron.log(profile)
       Reactotron.log(token)
     })
@@ -93,6 +95,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setName: name => dispatch(CustomerActions.setName(name))
     // attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
   }
 }
