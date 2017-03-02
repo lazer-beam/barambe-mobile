@@ -18,6 +18,7 @@ import Styles from './Styles/LoginScreenStyle'
 import {Images, Metrics, Colors} from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import Config from 'react-native-config'
 
 import { Sae } from 'react-native-textinput-effects'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
@@ -29,7 +30,6 @@ class LoginContainer extends React.Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
       email: '',
       password: '',
@@ -38,25 +38,22 @@ class LoginContainer extends React.Component {
       downloadProgress: 0,
     }
     this.lock = new Auth0Lock({clientId: 'e7Cg7lClPf4Tky0Z27iz83E732KPVnXX', domain: 'eliotjunior.auth0.com'})
-    this.apple = 'apple'
+  }
+
+  componentDidMount() {
+    this.lock.show({closable: true}, (err, profile, token) => {
+      if (err) {
+        return
+      }
+      Reactotron.log(profile)
+      Reactotron.log(token)
+    })
   }
 
   handleTextChange(txt, whichState) {
     let obj = {}
     obj[whichState] = txt
     this.setState(obj)
-  }
-
-  _onLogin() {
-    this.lock.show({closable: true}, (err, profile, token) => {
-      if (err) {
-        Reactotron.log(err)
-        return
-      }
-      // Authentication worked!
-      Reactotron.log('Logged in with Auth0!')
-      Reactotron.log(profile)
-    })
   }
   
   render() {
@@ -79,7 +76,6 @@ class LoginContainer extends React.Component {
           <Sae {...inputProps} label={'Password'} secureTextEntry={true} value={this.state.password} onChangeText={(txt) => this.handleTextChange(txt, 'password')} />
         </View>
         <Button
-          onPress={() => this._onLogin()}
           title="Submit"
           color={ Colors.app1}
           accessibilityLabel="Submit Login"
