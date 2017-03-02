@@ -14,6 +14,8 @@ import MenuBeersScreen from '../Components/MenuBeersScreen'
 import MenuShotsScreen from '../Components/MenuShotsScreen'
 import MenuCocktailsScreen from '../Components/MenuCocktailsScreen'
 
+import LoginContainer from '../Containers/LoginContainer'
+
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
@@ -30,6 +32,7 @@ export default class NavigationRouter extends Component {
           <Scene key='beersMenu' component={MenuBeersScreen} title='Beers' />
           <Scene key='shotsMenu' component={MenuShotsScreen} title='Shots' />
           <Scene key='cocktailsMenu' component={MenuCocktailsScreen} title='Cocktails' />
+          <Scene key='login' component={LoginContainer} title='Login' hideNavBar />
 
           <Scene key='creditCardFormScreen' component={CreditCardFormScreen} title='Credit Card' />
         </Scene>
