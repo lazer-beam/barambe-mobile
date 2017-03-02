@@ -12,10 +12,11 @@ android/android.iml
 android/app/app.iml
 android/barambe.iml
 android/app/build.gradle
+.idea/
 
 ** android config **
-ios
-.keystore
+ios/
+barambekey.keystore
 keystore.properties
 
 ** ios config **
