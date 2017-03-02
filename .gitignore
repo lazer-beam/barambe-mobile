@@ -15,6 +15,11 @@ android/app/build.gradle
 
 ** android config **
 ios
+.keystore
+keystore.properties
+
+** ios config **
+.pbxproj
 
 ** misc **
 .DS_Store
@@ -24,4 +29,4 @@ yarn-error.log
 
 ** keystore **
 my-release-key.keystore
-
+.keystore
