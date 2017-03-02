@@ -4,8 +4,8 @@
 # team_id "3FTD6ME549"  # Developer Portal Team ID
 
 # Android
-# json_key_file "./google-play-api-secret.json" # Path to the json secret file - Follow https://github.com/fastlane/supply#setup to get one
-# package_name "com.infinitered.myapp" # You Android app package
+json_key_file "/Users/ejm/Documents/Google Play Android Developer-f5e88a2c3a1b.json" # Path to the json secret file - Follow https://github.com/fastlane/supply#setup to get one
+package_name "com.barambe" # You Android app package
 
 # you can even provide different app identifiers, Apple IDs and team names per lane:
 # More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md

@@ -13,8 +13,15 @@ android/app/app.iml
 android/barambe.iml
 android/app/build.gradle
 
+** android config **
+ios
+
 ** misc **
 .DS_Store
 App/.DS_Store
-npm-debug.log
+npm-debug.
+yarn-error.log
+
+** keystore **
+my-release-key.keystore
 
