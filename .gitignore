@@ -12,16 +12,22 @@ android/android.iml
 android/app/app.iml
 android/barambe.iml
 android/app/build.gradle
+.idea/
 
 ** android config **
-ios
+ios/
+barambekey.keystore
+keystore.properties
+
+** ios config **
+.pbxproj
 
 ** misc **
 .DS_Store
 App/.DS_Store
-npm-debug.
+npm-debug.log
 yarn-error.log
 
 ** keystore **
 my-release-key.keystore
-
+.keystore
