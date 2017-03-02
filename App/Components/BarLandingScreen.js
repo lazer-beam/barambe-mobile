@@ -33,6 +33,7 @@ class BarLandingScreen extends React.Component {
     this.changeTable = this.changeTable.bind(this)
     this.generateDrinksArrs = this.generateDrinksArrs.bind(this)
     this.convertPrices = this.convertPrices.bind(this)
+    this.createTab = this.createTab.bind(this)
   }
 
   // add a component mount that retrieves card info, need for changing cards -- should re-render with new card info
@@ -60,11 +61,30 @@ class BarLandingScreen extends React.Component {
     NavigationActions.creditCardFormScreen()
   }
 
-  renderMenuBar() {
+  renderMenuBar () {
+    this.createTab().then((resp) => {
+      console.log('tab created: ', resp)
+    }).catch(err => {
+      console.log('err', err)
+    })
     NavigationActions.barMenu({
       table: this.state.table,
       customerStripe: this.state.customerStripe,
       barStripe: this.props.barStripe
+    })
+  }
+
+  createTab () {
+    return fetch(`${DOMAIN}/tabs/opentab/`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        tableNum: this.state.table,
+        customerName: this.props.customerName
+      })
     })
   }
 
@@ -121,6 +141,7 @@ class BarLandingScreen extends React.Component {
 const mapStateToProps = state => {
   return {
     displayTab: state.customer.displayTab,
+    customerName: state.customer.customerName,
     currBar: state.bars.currBar
   }
 }
@@ -130,7 +151,8 @@ const mapDispatchToProps = dispatch => {
     setBeers: beers => dispatch(CustomerActions.setBeers(beers)),
     setShots: shots => dispatch(CustomerActions.setShots(shots)),
     setCocktails: cocktails => dispatch(CustomerActions.setCocktails(cocktails)),
-    setAddIns: addIns => dispatch(CustomerActions.setAddIns(addIns))
+    setAddIns: addIns => dispatch(CustomerActions.setAddIns(addIns)),
+    setTabId: tabId => dispatch(CustomerActions.setTabId(tabId))
   }
 }
 
