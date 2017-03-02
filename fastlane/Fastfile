@@ -13,7 +13,7 @@
 # Update this, if you use features of a newer version
 fastlane_version "1.81.0"
 
-default_platform :ios
+default_platform :android
 
 platform :ios do
   before_all do
