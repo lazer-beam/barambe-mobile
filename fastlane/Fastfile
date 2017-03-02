@@ -11,7 +11,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "1.81.0"
+fastlane_version "1.109.0"
 
 default_platform :android
 
@@ -26,7 +26,7 @@ platform :ios do
     # snapshot
     slack(
       message: "You can post to Slack!",
-      channel: "#p-projectname",  # Optional, by default will post to the default channel configured for the POST URL.
+      channel: "#barambe",  # Optional, by default will post to the default channel configured for the POST URL.
       payload: {            # Optional, lets you specify any number of your own Slack attachments.
         'Build Date' => Time.new.to_s
       },
@@ -100,7 +100,7 @@ end
 
 platform :android do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+  ENV["SLACK_URL"] = "https://lazerbeamteam.slack.com..."
   end
 
   desc "Tests Slack"
@@ -108,7 +108,7 @@ platform :android do
     # snapshot
     slack(
       message: "You can post to Slack!",
-      channel: "#p-projectname",  # Optional, by default will post to the default channel configured for the POST URL.
+      channel: "#barambe",  # Optional, by default will post to the default channel configured for the POST URL.
       payload: {            # Optional, lets you specify any number of your own Slack attachments.
         'Build Date' => Time.new.to_s
       },
@@ -116,14 +116,14 @@ platform :android do
     )
   end
 
-  desc "Submit a new Alpha Build to Google Play Store"
-  lane :alpha do
-    # Build the release version of the Android App
-    gradle(
-      task: "assemble",
-      build_type: "Release",
-      project_dir: "android/"
-    )
+  # desc "Submit a new Alpha Build to Google Play Store"
+  # lane :alpha do
+  #   # Build the release version of the Android App
+  #   gradle(
+  #     task: "assemble",
+  #     build_type: "Release",
+  #     project_dir: "android/"
+  #   )
 
     # Uploads generated apk to Google Play Store as an Alpha build
     supply(

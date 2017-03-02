@@ -16,7 +16,12 @@ import styles from './Styles/NearbyBarsScreenStyle'
 
 const DOMAIN = MenuConfig.domain
 
-class NearbyBarScreen extends React.Component {
+@connect(store => ({
+  bars: state.bars.bars,
+  currentLongitude: state.customer.currentLongitude,
+  currentLatitude: state.customer.currentLatitude
+}))
+export default class NearbyBarScreen extends React.Component {
   constructor (props: Object) {
     super(props)
 
@@ -123,18 +128,18 @@ class NearbyBarScreen extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    bars: state.bars.bars,
-    currentLongitude: state.customer.currentLongitude,
-    currentLatitude: state.customer.currentLatitude
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     bars: state.bars.bars,
+//     currentLongitude: state.customer.currentLongitude,
+//     currentLatitude: state.customer.currentLatitude
+//   }
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrBar: currBar => dispatch(BarsActions.setCurrBar(currBar))
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     setCurrBar: currBar => dispatch(BarsActions.setCurrBar(currBar))
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NearbyBarScreen)
+// export default connect(mapStateToProps, mapDispatchToProps)(NearbyBarScreen)

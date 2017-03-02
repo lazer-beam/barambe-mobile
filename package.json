@@ -8,7 +8,7 @@
     "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs standard | snazzy",
     "fixcode": "standard --fix",
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
-    "clean:android": "cd android/ && ./gradlew clean && cd .. && react-native run-android",
+    "clean:android": "cd android/ && ./gradlew clean && cd ..",
     "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && npm cache clean && npm i",
     "test": "NODE_ENV=production ava",
     "test:watch": "ava --watch",
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "apisauce": "^0.6.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "format-json": "^1.0.3",
     "lodash": "^4.17.2",
     "querystringify": "0.0.4",
