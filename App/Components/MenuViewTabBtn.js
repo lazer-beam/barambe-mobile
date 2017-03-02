@@ -1,9 +1,13 @@
 import React from 'react'
 import { Button } from 'react-native'
 import { connect } from 'react-redux'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 import CustomerActions from '../Redux/CustomerRedux'
 import { Colors } from '../Themes'
+import MenuConfig from '../Config/MenuConfig'
+
+const DOMAIN = MenuConfig.domain
 
 class ViewTabBtn extends React.Component {
   constructor (props) {
@@ -14,6 +18,19 @@ class ViewTabBtn extends React.Component {
 
   closeTab () {
     this.props.closeTab()
+    fetch(`${DOMAIN}/tabs/closetab/${this.props.tabId}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT'
+    }).then(res => res.text()
+    ).then(text => {
+      console.log(text)
+      NavigationActions.nearbyBarsScreen()
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   render () {
@@ -35,7 +52,8 @@ class ViewTabBtn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    displayTab: state.customer.displayTab
+    displayTab: state.customer.displayTab,
+    tabId: state.customer.tabId
   }
 }
 

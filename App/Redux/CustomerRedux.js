@@ -14,7 +14,7 @@ const { Types, Creators } = createActions({
   setLongitude: ['longitude'],
   setLatitude: ['latitude'],
   setCustomerName: ['name'],
-  setTabId: ['tab']
+  setTabId: ['tabId']
 })
 
 export const customerTypes = Types
@@ -32,7 +32,7 @@ export const INITIAL_STATE = Immutable({
   currentLongitude: '-118.390891',
   currentLatitude: '33.976002',
   customerName: '',
-  tabId: null
+  tabId: 4
 })
 
 /* ------------- Reducers ------------- */
@@ -81,6 +81,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_ADDINS]: setAddIns,
   [Types.SET_LONGITUDE]: setLongitude,
   [Types.SET_LATITUDE]: setLatitude,
-  [Types.SET_NAME]: setCustomerName,
-  [Types.SET_TABID]: setTabId
+  [Types.SET_CUSTOMER_NAME]: setCustomerName,
+  [Types.SET_TAB_ID]: setTabId
 })

@@ -39,6 +39,7 @@ class MenuFullButton extends React.Component {
   }
 
   orderDrink (order) {
+    console.log(`tabs id is: ${this.props.tabId}`)
     fetch(`${DOMAIN}/orders/addorder/`, {
       headers: {
         'Accept': 'application/json',

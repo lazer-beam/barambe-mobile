@@ -38,8 +38,9 @@ class BarLandingScreen extends React.Component {
 
   // add a component mount that retrieves card info, need for changing cards -- should re-render with new card info
   componentDidMount() {
-    RNFetchBlob.fetch('GET', `${DOMAIN}/drinks/getall/`)
+    RNFetchBlob.fetch('GET', 'http://barambe-2.appspot.com/drinks/getall/')
       .then(res => {
+        console.log('using deployment')
         this.setState({ fetching: false })
         this.generateDrinksArrs(res.json())
       }).catch(err => {
@@ -63,18 +64,24 @@ class BarLandingScreen extends React.Component {
 
   renderMenuBar () {
     this.createTab().then((resp) => {
-      console.log('tab created: ', resp)
+      return resp.text()
+    }).then(text => {
+      this.props.setTabId(parseInt(text.slice(11), 10))
+      NavigationActions.barMenu({
+        table: this.state.table,
+        customerStripe: this.state.customerStripe,
+        barStripe: this.props.barStripe
+      })
     }).catch(err => {
       console.log('err', err)
-    })
-    NavigationActions.barMenu({
-      table: this.state.table,
-      customerStripe: this.state.customerStripe,
-      barStripe: this.props.barStripe
     })
   }
 
   createTab () {
+    let table = null
+    if (this.state.table) {
+      table = parseInt(this.state.table, 10)
+    }
     return fetch(`${DOMAIN}/tabs/opentab/`, {
       headers: {
         'Accept': 'application/json',
@@ -82,7 +89,7 @@ class BarLandingScreen extends React.Component {
       },
       method: 'POST',
       body: JSON.stringify({
-        tableNum: this.state.table,
+        tableNum: table,
         customerName: this.props.customerName
       })
     })

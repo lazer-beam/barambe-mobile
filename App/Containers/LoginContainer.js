@@ -15,11 +15,8 @@ import {
 
 import { connect } from 'react-redux'
 import {Images, Metrics, Colors} from '../Themes'
-<<<<<<< HEAD
-=======
 import LoginActions from '../Redux/LoginRedux'
 import CustomerActions from '../Redux/CustomerRedux'
->>>>>>> feat/tabOrder
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Config from 'react-native-config'
 
@@ -65,7 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setName: name => dispatch(CustomerActions.setName(name))
+    setName: name => dispatch(CustomerActions.setCustomerName(name))
     // attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
   }
 }
