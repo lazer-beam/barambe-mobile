@@ -24,8 +24,32 @@ class MenuFullButton extends React.Component {
     this.removeConfirmSlider = this.removeConfirmSlider.bind(this)
     this.onSlide = this.onSlide.bind(this)
     this.orderDrink = this.orderDrink.bind(this)
-    this.buyDrink = this.buyDrink.bind(this)
+    this.sendPay = this.sendPay.bind(this)
     this.addOrderToStore = this.addOrderToStore.bind(this)
+  }
+
+  sendPay (amount) {
+    let payObj = {
+      amount: amount*100,
+      currency: 'usd',
+      stripeID: this.props.customerStripe,
+      barID: this.props.currBarStripe,
+    }
+    console.log(`payObj.amount is: ${payObj.amount}`)
+    console.log(`payObj.currency is: ${payObj.currency}`)
+    console.log(`payObj.stripeID is: ${payObj.stripeID}`)
+    console.log(`payObj.barID is: ${payObj.barID}`)
+    return fetch(`${DOMAIN}/customer/pay`, {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payObj)
+    }).then(res => {
+      return res.json()
+    }).then(json => {
+      console.log(json)
+    }).catch(err => {
+      console.log('err', err)
+    })
   }
 
   itemClicked (item) {
@@ -55,13 +79,9 @@ class MenuFullButton extends React.Component {
     })
   }
 
-  buyDrink (amount) {
-    this.props.buyDrink(amount)
-  }
-
   onSlide (order) {
     this.orderDrink(order)
-    this.buyDrink(order.price)
+    this.sendPay(order.price)
     this.addOrderToStore(order)
     this.removeConfirmSlider()
   }
@@ -106,7 +126,9 @@ class MenuFullButton extends React.Component {
 const mapStateToProps = state => {
   return {
     paidOrders: state.customer.paidOrders,
-    tabId: state.customer.tabId
+    tabId: state.customer.tabId,
+    customerStripe: state.customer.customerStripe,
+    currBarStripe: state.bars.currBarStripe
   }
 }
 

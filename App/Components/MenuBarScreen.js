@@ -22,7 +22,6 @@ class MenuBarScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
-      customerStripe: this.props.customerStripe,
       barStripe: this.props.barStripe,
       visibleHeight: Metrics.screenHeight,
       beers: [],
@@ -35,46 +34,18 @@ class MenuBarScreen extends React.Component {
     this.renderShotsMenu = this.renderShotsMenu.bind(this)
     this.renderCocktailsMenu = this.renderCocktailsMenu.bind(this)
     this.renderTabHistory = this.renderTabHistory.bind(this)
-    this.sendPay = this.sendPay.bind(this)
-  }
-
-  sendPay (amount) {
-    let payObj = {
-      amount: amount*100,
-      currency: 'usd',
-      stripeID: this.props.customerStripe,
-      barID: this.state.barStripe,
-    }
-    console.log(`payObj.amount is: ${payObj.amount}`)
-    console.log(`payObj.currency is: ${payObj.currency}`)
-    console.log(`payObj.stripeID is: ${payObj.stripeID}`)
-    console.log(`payObj.barID is: ${payObj.barID}`)
-    return fetch(`${DOMAIN}/customer/pay`, {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payObj)
-    }).then(res => {
-      return res.json()
-    }).then(json => {
-      console.log(json)
-    }).catch(err => {
-      console.log('err', err)
-    })
   }
 
   renderBeerMenu () {
-    NavigationActions.beersMenu({ buyDrink: this.sendPay, table: this.props.table })
+    NavigationActions.beersMenu({ table: this.props.table })
   }
 
   renderShotsMenu () {
-    NavigationActions.shotsMenu({ buyDrink: this.sendPay, table: this.props.table })
+    NavigationActions.shotsMenu({ table: this.props.table })
   }
 
   renderCocktailsMenu () {
-    NavigationActions.cocktailsMenu({
-      buyDrink: this.sendPay,
-      table: this.props.table
-    })
+    NavigationActions.cocktailsMenu({ table: this.props.table })
   }
 
   renderTabHistory () {
@@ -117,7 +88,6 @@ const mapStateToProps = state => {
   return {
     displayTab: state.customer.displayTab,
     currBar: state.bars.currBar,
-    customerStripe: state.customer.customerStripe
   }
 }
 

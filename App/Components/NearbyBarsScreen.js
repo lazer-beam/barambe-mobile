@@ -53,8 +53,8 @@ class NearbyBarScreen extends React.Component {
 
   renderBarLanding(barObj) {
     this.setCurrentBar(barObj.picture)
+    this.props.setCurrBarStripe(barObj.stripe)
     NavigationActions.barLandingScreen({
-      barStripe: barObj.stripe,
       name: barObj.name,
       picture: barObj.picture,
       authId: barObj.authId
@@ -134,7 +134,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrBar: currBar => dispatch(BarsActions.setCurrBar(currBar))
+    setCurrBar: currBar => dispatch(BarsActions.setCurrBar(currBar)),
+    setCurrBarStripe: newBarStripe => dispatch(BarsActions.setCurrBarStripe(newBarStripe)),
   }
 }
 

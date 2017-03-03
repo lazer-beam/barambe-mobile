@@ -5,7 +5,8 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   setBars: ['bars'],
-  setCurrBar: ['bar']
+  setCurrBar: ['bar'],
+  setCurrBarStripe: ['barStripe'],
 })
 
 export const barTypes = Types
@@ -50,7 +51,8 @@ export const INITIAL_STATE = Immutable({
           authId: 'joxersdalys',
           name: 'Joxer\'s Daly\'s'
         }],
-  currBar: ''
+  currBar: '',
+  currBarStripe: 'acct_19nbJhDCKIISg37F',
 })
 
 /* ------------- Reducers ------------- */
@@ -61,9 +63,12 @@ export const setBars = (state: Object, { bars }: Object) =>
 export const setCurrBar = (state: Object, { bar }: String) =>
   Immutable.merge(state, { currBar: bar })
 
+export const setCurrBarStripe = (state: Object, { barStripe }: String) =>
+  Immutable.merge(state, { currBarStripe: barStripe })
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_BARS]: setBars,
-  [Types.SET_CURR_BAR]: setCurrBar
+  [Types.SET_CURR_BAR]: setCurrBar,
+  [Types.SET_CURR_BAR_STRIPE]: setCurrBarStripe,
 })

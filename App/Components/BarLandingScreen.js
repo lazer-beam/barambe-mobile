@@ -19,12 +19,6 @@ class BarLandingScreen extends React.Component {
 
     this.state = {
       table: '',
-      // the below should be props
-      cardBrand: 'Visa',
-      cardLast4: '4242',
-      customerStripe: 'cus_AB1NVGME7exD4z',
-      barStripe: 'acct_19nbJhDCKIISg37F',
-      barName: "Paddy's Pub",
       fetching: true
     }
 
@@ -69,7 +63,6 @@ class BarLandingScreen extends React.Component {
       this.props.setTabId(parseInt(text.slice(11), 10))
       NavigationActions.barMenu({
         table: this.state.table,
-        barStripe: this.props.barStripe,
       })
     }).catch(err => {
       console.log('err', err)
@@ -130,7 +123,7 @@ class BarLandingScreen extends React.Component {
           />
           <View style={styles.currentCard}>
             <Text style={{color:'#C5C1C0', fontSize: 17}}>ACTIVE CARD:</Text>
-            <Text style={{color:'#C5C1C0', fontSize: 15}}>{this.state.cardBrand} {this.state.cardLast4}</Text>
+            <Text style={{color:'#C5C1C0', fontSize: 15}}>{this.props.brandAndDigits[0]} {this.props.brandAndDigits[1]}</Text>
           </View>
           <View style={styles.changeCardBtn}>
             <Button onPress={() => { this.renderCardForm() }} color={Colors.barambeBlack} title='Change Card' />
@@ -146,7 +139,6 @@ class BarLandingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    customerStripe: state.customer.customerStripe,
     brandAndDigits: state.customer.brandAndDigits,
     displayTab: state.customer.displayTab,
     customerName: state.customer.customerName,
