@@ -35,8 +35,8 @@ export const INITIAL_STATE = Immutable({
   currentLatitude: '33.976002',
   customerName: 'INITIAL STATE',
   tabId: 4,
-  customerStripe: '',
-  brandAndDigits: [],
+  customerStripe: 'cus_AB1NVGME7exD4z',
+  brandAndDigits: ['Visa', '4242'],
 })
 
 /* ------------- Reducers ------------- */

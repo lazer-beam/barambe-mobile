@@ -42,8 +42,8 @@ class MenuBarScreen extends React.Component {
     let payObj = {
       amount: amount*100,
       currency: 'usd',
-      stripeID: this.state.customerStripe,
-      barID: this.state.barStripe
+      stripeID: this.props.customerStripe,
+      barID: this.state.barStripe,
     }
     console.log(`payObj.amount is: ${payObj.amount}`)
     console.log(`payObj.currency is: ${payObj.currency}`)
@@ -116,7 +116,8 @@ class MenuBarScreen extends React.Component {
 const mapStateToProps = state => {
   return {
     displayTab: state.customer.displayTab,
-    currBar: state.bars.currBar
+    currBar: state.bars.currBar,
+    customerStripe: state.customer.customerStripe
   }
 }
 

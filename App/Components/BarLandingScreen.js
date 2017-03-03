@@ -69,8 +69,7 @@ class BarLandingScreen extends React.Component {
       this.props.setTabId(parseInt(text.slice(11), 10))
       NavigationActions.barMenu({
         table: this.state.table,
-        customerStripe: this.state.customerStripe,
-        barStripe: this.props.barStripe
+        barStripe: this.props.barStripe,
       })
     }).catch(err => {
       console.log('err', err)
@@ -147,6 +146,8 @@ class BarLandingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    customerStripe: state.customer.customerStripe,
+    brandAndDigits: state.customer.brandAndDigits,
     displayTab: state.customer.displayTab,
     customerName: state.customer.customerName,
     currBar: state.bars.currBar

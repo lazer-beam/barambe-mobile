@@ -3,6 +3,7 @@ import { Alert, ScrollView, View, Image, Button, TextInput, Text } from 'react-n
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Form from 'react-native-form'
+import { connect } from 'react-redux'
 
 import CustomerActions from '../Redux/CustomerRedux'
 import { Metrics, Images, Colors } from '../Themes'
@@ -12,7 +13,7 @@ import styles from './Styles/MenuBarScreenStyle'
 
 const DOMAIN = MenuConfig.domain
 
-export default class CreditCardFormScreen extends React.Component {
+class CreditCardFormScreen extends React.Component {
   constructor (props: Object) {
     super(props)
     this.state = {
@@ -131,4 +132,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreditCardFormScreen)
+export default connect(mapDispatchToProps)(CreditCardFormScreen)
