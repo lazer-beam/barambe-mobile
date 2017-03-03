@@ -2,14 +2,15 @@
 
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
+import Reactotron from 'reactotron-react-native'
 
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  loginRequest: ['username', 'password'],
-  loginSuccess: ['username'],
+  loginSuccess: ['user', 'refreshToken', 'idToken', 'accessToken'],
+  tokenAuthSuccess: ['idToken'],
   loginFailure: ['error'],
-  logout: null
+  logout: null,
 })
 
 export const LoginTypes = Types
@@ -18,37 +19,40 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  username: null,
+  user: null,
+  accessToken: null,
+  refreshToken: null,
+  idToken: null,
   error: null,
-  fetching: false
+  init: false,
+  loggedIn: false,
+  fetchingLogin: false,
 })
 
 /* ------------- Reducers ------------- */
 
-// we're attempting to login
-export const request = (state: Object) => state.merge({ fetching: true })
 
-// we've successfully logged in
-export const success = (state: Object, { username }: Object) =>
-  state.merge({ fetching: false, error: null, username })
+export const loginSuccessR = (state = INITIAL_STATE, user, refreshToken, idToken, accessToken) =>
+  Immutable.merge(state, [{ loggedIn: true, error: null}, user, refreshToken, idToken, accessToken ])
 
-// we've had a problem logging in
-export const failure = (state: Object, { error }: Object) =>
-  state.merge({ fetching: false, error })
+export const tokenSuccess = (state = INITIAL_STATE, idToken) =>
+  Immutable.merge(state, {idToken, loggedIn: true})
+  
+export const failure = (state = INITIAL_STATE, error) =>
+  Immutable.merge(state, { fetching: false, error })
 
-// we've logged out
-export const logout = (state: Object) => INITIAL_STATE
+export const logout = (state = INITIAL_STATE) => INITIAL_STATE
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.LOGIN_REQUEST]: request,
-  [Types.LOGIN_SUCCESS]: success,
+  [Types.LOGIN_SUCCESS]: loginSuccessR,
+  [Types.TOKEN_AUTH_SUCCESS]: tokenSuccess,
   [Types.LOGIN_FAILURE]: failure,
-  [Types.LOGOUT]: logout
+  [Types.LOGOUT]: logout,
 })
 
 /* ------------- Selectors ------------- */
 
 // Is the current user logged in?
-export const isLoggedIn = (loginState: Object) => loginState.username !== null
+// export const isLoggedIn = (loginState: Object) => loginState.username !== null
