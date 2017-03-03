@@ -8,18 +8,16 @@ import LoginActions from '../Redux/LoginRedux'
 @connect(store => ({
   initApp: store.login.initApp,
 }))
-export default class Launch extends React.Component {
+export default class Launch2 extends React.Component {
 componentDidMount() {
   setTimeout(() => { 
-    Actions.launch2()
+    Actions.login()
   }, 2000)
 }
   render(){
     return (
       <View style={styles.container}>
-        { this.props.initApp 
-          ? <View style={{backgroundColor: '#3c3c3c'}} /> 
-          : <Image style={{width: 300, height: 300}} source={{uri: 'http://i.imgur.com/mvywlbT.png'}}/> }
+        <View style={{backgroundColor: '#3c3c3c'}} /> 
       </View>
     )
   }
