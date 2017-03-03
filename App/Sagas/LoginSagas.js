@@ -1,13 +1,16 @@
-import { put } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 import LoginActions from '../Redux/LoginRedux'
+import Reactotron from 'reactotron-react-native'
 
-// attempts to login
-export function * login ({ username, password }) {
-  if (password === '') {
-    // dispatch failure
-    yield put(LoginActions.loginFailure('WRONG'))
-  } else {
-    // dispatch successful logins
-    yield put(LoginActions.loginSuccess(username))
-  }
-}
+// export function* login (item) {
+//   Reactotron.display({ message: 'LoginContainer', value: item })
+//   yield call(delay, 1000)
+//   // try {
+
+
+//   // } catch(e) {
+//   //   yield put(LoginActions.loginFailure('WRONG'))
+
+//   // }
+// }

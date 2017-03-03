@@ -1,10 +1,10 @@
 // @flow
-
 import React from 'react'
 import { ScrollView, View, Image, Text, TouchableOpacity } from 'react-native'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Entypo from 'react-native-vector-icons/Entypo'
+import Reactotron from 'reactotron-react-native'
 import { connect } from 'react-redux'
 
 import BarsActions from '../Redux/BarsRedux'
@@ -17,9 +17,9 @@ import styles from './Styles/NearbyBarsScreenStyle'
 const DOMAIN = MenuConfig.domain
 
 @connect(store => ({
-  bars: state.bars.bars,
-  currentLongitude: state.customer.currentLongitude,
-  currentLatitude: state.customer.currentLatitude
+  bars: store.bars.bars,
+  currentLongitude: store.customer.currentLongitude,
+  currentLatitude: store.customer.currentLatitude
 }))
 export default class NearbyBarScreen extends React.Component {
   constructor (props: Object) {
@@ -36,6 +36,7 @@ export default class NearbyBarScreen extends React.Component {
   }
 
   componentDidMount() {
+    Reactotron.display({ name: 'NearbyBarScreen', value: 'HERE WE ARE' })
     this.setState({
       bars: this.filterBarsByDistance(this.props.bars)
     })
@@ -87,7 +88,7 @@ export default class NearbyBarScreen extends React.Component {
   }
 
   setCurrentBar (bar) {
-    this.props.setCurrBar(bar)
+    this.props.dispatch(BarsActions.setCurrBar(bar))
   }
 
   render () {
@@ -129,17 +130,17 @@ export default class NearbyBarScreen extends React.Component {
 }
 
 // const mapStateToProps = state => {
-//   return {
-//     bars: state.bars.bars,
-//     currentLongitude: state.customer.currentLongitude,
-//     currentLatitude: state.customer.currentLatitude
-//   }
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     setCurrBar: currBar => dispatch(BarsActions.setCurrBar(currBar))
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(NearbyBarScreen)
+//    return {
+//      bars: state.bars.bars,
+//      currentLongitude: state.customer.currentLongitude,
+//      currentLatitude: state.customer.currentLatitude
+//    }
+//  }
+ 
+//  const mapDispatchToProps = dispatch => {
+//    return {
+//      setCurrBar: currBar => dispatch(BarsActions.setCurrBar(currBar))
+//    }
+//  }
+ 
+//  export default connect(mapStateToProps, mapDispatchToProps)(NearbyBarScreen)
