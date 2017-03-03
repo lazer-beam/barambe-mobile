@@ -60,6 +60,10 @@ export default class CreditCardFormScreen extends React.Component {
     }
     formBody = formBody.join("&");
 
+    /**=====================================================
+     * 
+     * =====================================================
+     */
     return fetch('https://api.stripe.com/v1/' + 'tokens', {
       method: 'post',
       headers: {
