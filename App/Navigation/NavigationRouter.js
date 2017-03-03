@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { Scene, Router, Actions, Modal } from 'react-native-router-flux'
+import {Colors} from '../Themes'
 
 import Styles from './Styles/NavigationContainerStyle'
 import BarLandingScreen from '../Components/BarLandingScreen'
@@ -16,6 +17,7 @@ import MenuCocktailsScreen from '../Components/MenuCocktailsScreen'
 
 import LoginContainer from '../Containers/LoginContainer'
 import Launch from '../Containers/Launch'
+import Launch2 from '../Containers/Launch2'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -28,8 +30,9 @@ export default class NavigationRouter extends Component {
         <Scene key="modal" component={Modal}>
           <Scene key="root" hideNavBar={true}>
           
-            <Scene key="launch" component={Launch} title="Launch" initial={true} style={{flex:1, backgroundColor:'transparent'}}/>
-            
+            <Scene key="launch" component={Launch} title="Launch" initial={true} style={{flex:1, backgroundColor:'transparent'}} hideNavBar={true}/>
+            <Scene key="launch2" component={Launch2} title="Launch" style={{flex:1, backgroundColor:'transparent'}} hideNavBar={true}/>
+
             <Scene key="login" direction="vertical">
               <Scene key='lock' component={LoginContainer} title='Login' direction="vertical" hideNavBar />
             </Scene>
@@ -46,10 +49,6 @@ export default class NavigationRouter extends Component {
 
           </Scene>
         </Scene>
-
-
-
-
       </Router>
     )
   }
