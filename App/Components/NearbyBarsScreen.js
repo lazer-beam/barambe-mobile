@@ -101,6 +101,7 @@ class NearbyBarScreen extends React.Component {
         }
       }
     }
+
     return (
       <View style={styles.nearbyBarsContainer}>
         <Text style={styles.barHeader}>NEARBY BARS</Text>

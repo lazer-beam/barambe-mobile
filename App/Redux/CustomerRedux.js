@@ -14,7 +14,9 @@ const { Types, Creators } = createActions({
   setLongitude: ['longitude'],
   setLatitude: ['latitude'],
   setCustomerName: ['name'],
-  setTabId: ['tabId']
+  setTabId: ['tabId'],
+  setCustomerStripe: ['customerStripe'],
+  setCard: ['brandAndDigits']
 })
 
 export const customerTypes = Types
@@ -31,8 +33,10 @@ export const INITIAL_STATE = Immutable({
   addIns: [],
   currentLongitude: '-118.390891',
   currentLatitude: '33.976002',
-  customerName: '',
-  tabId: 4
+  customerName: 'INITIAL STATE',
+  tabId: 4,
+  customerStripe: '',
+  brandAndDigits: [],
 })
 
 /* ------------- Reducers ------------- */
@@ -40,7 +44,11 @@ export const INITIAL_STATE = Immutable({
 export const addOrder = (state: Object, { order }: Object) =>
   Immutable.merge(state, { paidOrders: state.paidOrders.concat(order) })
 
-export const closeTab = () => INITIAL_STATE
+export const closeTab = (state: Object) => 
+  Immutable.merge(state, {
+    paidOrders: [],
+    displayTab: false
+  })
 
 export const renderTabView = (state: Object, { display }: Boolean) =>
   Immutable.merge(state, { displayTab: display })
@@ -69,6 +77,11 @@ export const setCustomerName = (state: Object, { name }) =>
 export const setTabId = (state: Object, { tabId }) =>
   Immutable.merge(state, { tabId: tabId })
 
+export const setCustomerStripe = (state: Object, { customerStripe }) =>
+  Immutable.merge(state, { customerStripe: customerStripe })
+
+export const setBrandAndDigits = (state: Object, { brandAndDigits }) =>
+  Immutable.merge(state, { brandAndDigits: brandAndDigits })
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -82,5 +95,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_LONGITUDE]: setLongitude,
   [Types.SET_LATITUDE]: setLatitude,
   [Types.SET_CUSTOMER_NAME]: setCustomerName,
-  [Types.SET_TAB_ID]: setTabId
+  [Types.SET_TAB_ID]: setTabId,
+  [Types.SET_CUSTOMER_STRIPE]: setCustomerStripe,
+  [Types.SET_BRAND_AND_DIGITS]: setBrandAndDigits,
 })

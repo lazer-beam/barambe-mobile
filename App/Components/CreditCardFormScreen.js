@@ -4,6 +4,7 @@ import RNFetchBlob from 'react-native-fetch-blob'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Form from 'react-native-form'
 
+import CustomerActions from '../Redux/CustomerRedux'
 import { Metrics, Images, Colors } from '../Themes'
 import MenuConfig from '../Config/MenuConfig'
 
@@ -121,3 +122,13 @@ export default class CreditCardFormScreen extends React.Component {
     )
   }
 }
+
+// if card successfully tokenized, then update Store with newStripe and newBrandAndDigits ([brand, last4digits])
+const mapDispatchToProps = dispatch => {
+  return {
+    setCustomerStripe: newStripe => dispatch(CustomerActions.setCustomerStripe(newStripe)),
+    setBrandAndDigits: newBrandAndDigits => dispatch(CustomerActions.setBrandAndDigits(newBrandAndDigits)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreditCardFormScreen)
