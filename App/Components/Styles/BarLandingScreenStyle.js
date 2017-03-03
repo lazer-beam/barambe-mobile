@@ -6,6 +6,8 @@ export default StyleSheet.create({
   barLandingContainer:{
       flex: 1,
       marginTop: Metrics.BarMenuTopMargin,
+      marginLeft: 4,
+      marginRight: 4,
       backgroundColor: '#1A2930'
     },
   currentCard: {

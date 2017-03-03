@@ -21,13 +21,16 @@ class NearbyBarScreen extends React.Component {
     super(props)
 
     this.state = {
-      bars: []
+      bars: [],
+      refreshing: false,
     }
     
     this.renderBarLanding = this.renderBarLanding.bind(this)
     this.calcDistance = this.calcDistance.bind(this)
     this.filterBarsByDistance = this.filterBarsByDistance.bind(this)
     this.setCurrentBar = this.setCurrentBar.bind(this)
+    // this.getLocation = this.getLocation.bind(this)
+    // this.refresh = this.refresh.bind(this)
   }
 
   componentDidMount() {
@@ -50,6 +53,30 @@ class NearbyBarScreen extends React.Component {
     //   // asynchronously get current position, send request to retrieve nearby bars, which populates this.state.bars
     // );
   }
+
+  // getLocation() {
+  //   let getPosition = Promise.promisify(navigator.geolocation.getCurrentPosition)
+  //   let currentLatitude = null
+  //   let currentLongitude = null
+  //   return getPosition(
+  //     (position) => {
+  //       console.log(`Current location: ${JSON.stringify(position)}`)
+  //       currentLongitude: position.coords.longitude,
+  //       currentLatitude: position.coords.latitude,
+  //     },
+  //     (error) => alert(JSON.stringify(error)),
+  //     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+  //   )
+  // }
+
+  // refresh() {
+  //   this.setState({ refreshing: true })
+  //   getLocation().then(() => {
+  //     // hit our server endpoint with geolocation
+  //   }).then(bars => {
+  //     this.setState({ refreshing: false })
+  //   })
+  // }
 
   renderBarLanding(barObj) {
     this.setCurrentBar(barObj.picture)
@@ -106,7 +133,15 @@ class NearbyBarScreen extends React.Component {
       <View style={styles.nearbyBarsContainer}>
         <Text style={styles.barHeader}>NEARBY BARS</Text>
         <Entypo name="drink" style={{textAlign: 'center'}} size={40} color="#C5C1C0" />
-        <ScrollView style={styles.container} ref='container'>
+        <ScrollView 
+          style={styles.container} 
+          ref='container'
+          // refreshControl={
+          //   <RefreshControl
+          //     refreshing={this.state.refreshing}
+          //     onRefresh={this._onRefresh.bind(this)}/>
+          // }
+        >
           {this.state.bars.map((barObj, idx) => {
             return <TouchableOpacity key={idx} style={styles.individualNearbyBarContainer} onPress={() => this.renderBarLanding(barObj)} >
                     <Image style={styles.headerImage} source={{uri: barObj.picture}} resizeMode='stretch'>

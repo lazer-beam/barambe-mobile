@@ -19,7 +19,6 @@ class MenuBeers extends React.Component {
     this.state = {
       visibleHeight: Metrics.screenHeight,
       beerClicked: null,
-      beers: null
     }
 
     this.displayBeerModal = this.displayBeerModal.bind(this)
